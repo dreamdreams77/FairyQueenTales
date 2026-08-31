@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Fairyland Library</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Quicksand:wght@400;500;600&display=swap');
+
+  :root {
+    --parchment: #fdf6e3;
+    --parchment-shadow: #d4c49a;
+    --ink: #2d1f0e;
+    --ink-light: #5a3e28;
+    --gold: #c8a83c;
+    --gold-light: #e8c84a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #14100a;
+    background-image:
+      radial-gradient(ellipse at 20% 20%, #1a2a10 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 15%, #201038 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 90%, #10202a 0%, transparent 55%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px 80px;
+    font-family: 'Lora', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 60%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 40% 25%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 80%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 10%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 45%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5% 90%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 75%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(2px 2px at 33% 40%, rgba(255,240,200,0.8) 0%, transparent 100%),
+      radial-gradient(2px 2px at 67% 55%, rgba(200,220,255,0.7) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap { position: relative; z-index: 1; width: 100%; max-width: 920px; }
+
+  .library-header {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .kicker {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: rgba(200, 168, 60, 0.75);
+    display: block;
+    margin-bottom: 18px;
+  }
+
+  .library-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(28px, 6vw, 46px);
+    color: var(--gold-light);
+    text-shadow: 0 0 30px rgba(200, 168, 60, 0.5), 0 2px 4px rgba(0,0,0,0.8);
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+  }
+
+  .library-note {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    color: var(--parchment-shadow);
+    font-size: 15px;
+    max-width: 520px;
+    margin: 0 auto 50px;
+    line-height: 1.8;
+    opacity: 0.9;
+  }
+
+  .shelf {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 26px;
+    margin-bottom: 60px;
+  }
+
+  .book-tile {
+    display: block;
+    text-decoration: none;
+    background: var(--parchment);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    border: 1px solid var(--parchment-shadow);
+    border-radius: 6px 22px 22px 6px;
+    box-shadow:
+      -6px 0 0 var(--tile-spine, #c8b896),
+      -10px 4px 18px rgba(0,0,0,0.55),
+      0 6px 30px rgba(0,0,0,0.4);
+    padding: 26px 22px 22px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .book-tile:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      -6px 0 0 var(--tile-spine, #c8b896),
+      -10px 6px 24px rgba(0,0,0,0.6),
+      0 10px 36px rgba(0,0,0,0.45);
+  }
+
+  .book-tile::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 30px;
+    background: linear-gradient(to right, rgba(180,150,100,0.3), transparent);
+    pointer-events: none;
+  }
+
+  .book-tile .tile-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  .book-tile .tile-chapter {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.85;
+    display: block;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .book-tile .tile-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 17px;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .book-tile .tile-desc {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 12px;
+    color: var(--ink-light);
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+
+  .book-tile .tile-open {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--emerald, #3a7a4e);
+    margin-top: 16px;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  .book-tile .tile-open::after { content: ' →'; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    opacity: 0.45;
+    font-size: 18px;
+    letter-spacing: 10px;
+    margin: 10px 0 40px;
+  }
+
+  .cast-section {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(200, 168, 60, 0.25);
+    border-radius: 16px;
+    padding: 36px 30px;
+    margin-bottom: 40px;
+  }
+
+  .cast-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 20px;
+    color: var(--gold-light);
+    text-align: center;
+    margin-bottom: 22px;
+    letter-spacing: 1px;
+  }
+
+  .cast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+  }
+
+  .cast-card {
+    text-align: center;
+    padding: 10px 6px;
+  }
+
+  .cast-card .icon { font-size: 26px; margin-bottom: 6px; }
+  .cast-card .name {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--gold-light);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .cast-card .desc {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 11px;
+    color: var(--parchment-shadow);
+    line-height: 1.5;
+  }
+
+  .map-section {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(200, 168, 60, 0.25);
+    border-radius: 16px;
+    padding: 36px 30px;
+    margin-bottom: 40px;
+  }
+
+  .map-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 20px;
+    color: var(--gold-light);
+    text-align: center;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+
+  .map-subtitle {
+    text-align: center;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 12px;
+    color: var(--parchment-shadow);
+    margin-bottom: 24px;
+    opacity: 0.85;
+  }
+
+  .map-frame {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 18px;
+    margin-top: 18px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 11px;
+    color: var(--parchment-shadow);
+  }
+
+  .map-legend span { display: flex; align-items: center; gap: 6px; }
+
+  .map-legend .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .note-section {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .note-toggle {
+    background: linear-gradient(135deg, #2a1505, #4a2c0a);
+    color: var(--gold-light);
+    border: 2px solid rgba(200, 168, 60, 0.5);
+    padding: 12px 26px;
+    border-radius: 30px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.35);
+  }
+
+  .note-toggle:hover {
+    border-color: var(--gold);
+    box-shadow: 0 4px 20px rgba(200, 168, 60, 0.3);
+    transform: translateY(-1px);
+  }
+
+  details.note-details { display: inline-block; text-align: left; }
+  details.note-details summary { list-style: none; text-align: center; }
+  details.note-details summary::-webkit-details-marker { display: none; }
+
+  .note-card {
+    margin-top: 22px;
+    max-width: 480px;
+    background: var(--parchment);
+    border-radius: 6px 20px 20px 6px;
+    border: 1px solid var(--parchment-shadow);
+    box-shadow: -6px 0 0 #c8b896, 0 8px 30px rgba(0,0,0,0.5);
+    padding: 30px 32px;
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    color: var(--ink-light);
+    line-height: 1.9;
+    text-align: left;
+  }
+
+  .note-card .note-signoff {
+    display: block;
+    margin-top: 14px;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 15px;
+    color: var(--emerald, #3a7a4e);
+    text-align: right;
+  }
+
+  .dedication {
+    text-align: center;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    color: var(--parchment-shadow);
+    font-size: 14px;
+    letter-spacing: 1px;
+    opacity: 0.85;
+    line-height: 2;
+  }
+
+  .dedication .love {
+    display: block;
+    margin-top: 10px;
+    font-family: 'Cinzel Decorative', serif;
+    font-style: normal;
+    font-size: 16px;
+    color: var(--gold-light);
+  }
+
+  @media (max-width: 600px) {
+    .cast-section { padding: 26px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="library-header">
+    <span class="kicker">A Collection, All in One Place</span>
+    <h1 class="library-title">The Fairyland Library</h1>
+    <p class="library-note">Every story so far, gathered under one roof, for the one they were all written for.</p>
+  </div>
+
+  <div class="shelf">
+
+    <a class="book-tile" href="fairy-storybook-v2.html" style="--tile-spine:#c8b896;">
+      <span class="tile-icon">🧚</span>
+      <span class="tile-chapter">Book One</span>
+      <span class="tile-title">Fairy &amp; the Fairyland</span>
+      <span class="tile-desc">Where it all began. Fairy's castle, Madge, DanDan, Princess Lauren, and the rules of the woods.</span>
+      <span class="tile-open">Open the Book</span>
+    </a>
+
+    <a class="book-tile" href="esma-and-the-shadow-woods.html" style="--tile-spine:#b090d8;">
+      <span class="tile-icon">🐇</span>
+      <span class="tile-chapter">Book Two</span>
+      <span class="tile-title">Esma &amp; the Shadow Woods</span>
+      <span class="tile-desc">A wishing rabbit with emerald eyes, a third wood nobody maps, and a lost little light finding its way home.</span>
+      <span class="tile-open">Open the Book</span>
+    </a>
+
+    <a class="book-tile" href="littlelove-and-the-purple-calculator.html" style="--tile-spine:#8a6020;">
+      <span class="tile-icon">✨</span>
+      <span class="tile-chapter">Book Three</span>
+      <span class="tile-title">LittleLove &amp; the Purple Calculator</span>
+      <span class="tile-desc">A lost calculator, a stone path, and how the shy one behind the tree turned out to be lots of fun.</span>
+      <span class="tile-open">Open the Book</span>
+    </a>
+
+    <a class="book-tile" href="euna-and-the-rainbow-woods-playground.html" style="--tile-spine:#4a8a5a;">
+      <span class="tile-icon">🐌</span>
+      <span class="tile-chapter">Book Four</span>
+      <span class="tile-title">Euna &amp; the Rainbow Woods Playground</span>
+      <span class="tile-desc">A magical snail keeping a quiet secret, a laughing kookaburra, and an easy, sunny afternoon at the park.</span>
+      <span class="tile-open">Open the Book</span>
+    </a>
+
+  </div>
+
+  <div class="divider">✦ ✦ ✦</div>
+
+  <div class="map-section">
+    <div class="map-title">The Fairyland Atlas</div>
+    <div class="map-subtitle">so you always know where everyone is</div>
+    <div class="map-frame">
+      <svg viewBox="0 0 640 420" width="100%" height="auto">
+        <rect x="0" y="0" width="640" height="420" rx="14" fill="#0f1a12"/>
+        <ellipse cx="320" cy="210" rx="300" ry="190" fill="#16241a"/>
+
+        <!-- Yellow Woods -->
+        <ellipse cx="120" cy="90" rx="95" ry="60" fill="#3a3a10" opacity="0.85"/>
+        <text x="120" y="70" text-anchor="middle" font-family="Quicksand, sans-serif" font-size="11" fill="#e8c832" letter-spacing="1">YELLOW WOODS</text>
+        <text x="120" y="112" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9" fill="#c8b060">stay out</text>
+
+        <!-- Green Woods -->
+        <ellipse cx="520" cy="100" rx="95" ry="62" fill="#204a20" opacity="0.85"/>
+        <text x="520" y="80" text-anchor="middle" font-family="Quicksand, sans-serif" font-size="11" fill="#7ab83c" letter-spacing="1">GREEN WOODS</text>
+        <text x="520" y="122" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9" fill="#a8d888">tread carefully</text>
+
+        <!-- Shadow Woods -->
+        <ellipse cx="90" cy="330" rx="90" ry="58" fill="#2a1a3a" opacity="0.9"/>
+        <text x="90" y="312" text-anchor="middle" font-family="Quicksand, sans-serif" font-size="11" fill="#b090d8" letter-spacing="1">SHADOW WOODS</text>
+        <text x="90" y="352" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9" fill="#c8b0e8">walk gently</text>
+
+        <!-- Rainbow Woods / Park -->
+        <ellipse cx="520" cy="330" rx="100" ry="62" fill="#1a3a2a" opacity="0.9"/>
+        <text x="520" y="308" text-anchor="middle" font-family="Quicksand, sans-serif" font-size="11" fill="#5db87a" letter-spacing="1">RAINBOW WOODS</text>
+        <text x="520" y="330" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9" fill="#a8e8c0">the playground is safe</text>
+        <circle cx="495" cy="352" r="3" fill="#e8c84a"/>
+        <text x="505" y="356" font-family="Lora, serif" font-style="italic" font-size="8" fill="#a8e8c0">swings</text>
+
+        <!-- Paths -->
+        <path d="M170 130 Q 250 190 300 210" stroke="#c8a83c" stroke-width="1.5" stroke-dasharray="3 5" fill="none" opacity="0.5"/>
+        <path d="M470 140 Q 400 190 340 210" stroke="#c8a83c" stroke-width="1.5" stroke-dasharray="3 5" fill="none" opacity="0.5"/>
+        <path d="M150 290 Q 230 250 300 225" stroke="#c8a83c" stroke-width="1.5" stroke-dasharray="3 5" fill="none" opacity="0.5"/>
+        <path d="M440 285 Q 400 250 340 225" stroke="#c8a83c" stroke-width="1.5" stroke-dasharray="3 5" fill="none" opacity="0.5"/>
+
+        <!-- Castle at center -->
+        <rect x="290" y="185" width="60" height="46" fill="#5a3a10"/>
+        <polygon points="290,185 320,160 350,185" fill="#7a5218"/>
+        <rect x="308" y="205" width="14" height="26" fill="#2a1505"/>
+        <text x="320" y="248" text-anchor="middle" font-family="Cinzel Decorative, serif" font-size="12" fill="#e8c84a">Fairy's Castle</text>
+
+        <!-- Madge's pond -->
+        <ellipse cx="320" cy="270" rx="34" ry="16" fill="#3a6a8a" opacity="0.8"/>
+        <text x="320" y="298" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9" fill="#a8d0e8">Madge's Pond</text>
+
+        <!-- water beyond, where Boat Momma sailed -->
+        <path d="M0 400 Q 320 380 640 405 L 640 420 L 0 420 Z" fill="#0a1a2a" opacity="0.7"/>
+        <text x="600" y="412" text-anchor="end" font-family="Lora, serif" font-style="italic" font-size="9" fill="#6a8aa8">the far water</text>
+      </svg>
+    </div>
+    <div class="map-legend">
+      <span><span class="dot" style="background:#e8c832;"></span> Yellow Woods, stay out</span>
+      <span><span class="dot" style="background:#7ab83c;"></span> Green Woods, tread carefully</span>
+      <span><span class="dot" style="background:#b090d8;"></span> Shadow Woods, walk gently</span>
+      <span><span class="dot" style="background:#5db87a;"></span> Rainbow Woods, always safe</span>
+    </div>
+  </div>
+
+  <div class="cast-section">
+    <div class="cast-title">The Cast of Fairyland</div>
+    <div class="cast-grid">
+      <div class="cast-card"><div class="icon">🧚</div><span class="name">Fairy</span><span class="desc">Sometimes Andy Bean. Always a queen.</span></div>
+      <div class="cast-card"><div class="icon">👑</div><span class="name">Princess Lauren</span><span class="desc">Curious, kind, holds Fairy's hand.</span></div>
+      <div class="cast-card"><div class="icon">🐢</div><span class="name">Madge</span><span class="desc">The magic turtle. Ancient and wise.</span></div>
+      <div class="cast-card"><div class="icon">💎</div><span class="name">DanDan</span><span class="desc">Invisible. Loves gems and secrets.</span></div>
+      <div class="cast-card"><div class="icon">✨</div><span class="name">LittleLove</span><span class="desc">Behind the tree, or beside a friend.</span></div>
+      <div class="cast-card"><div class="icon">💫</div><span class="name">Locks</span><span class="desc">Beautiful, steady, keeps the lantern lit.</span></div>
+      <div class="cast-card"><div class="icon">🦐</div><span class="name">Seita</span><span class="desc">The pet prawn. Dances in teacups.</span></div>
+      <div class="cast-card"><div class="icon">🐇</div><span class="name">Esma</span><span class="desc">The wishing rabbit. Emerald eyes.</span></div>
+      <div class="cast-card"><div class="icon">🐌</div><span class="name">Euna</span><span class="desc">Magical. Only Seita and DanDan know how.</span></div>
+      <div class="cast-card"><div class="icon">⛵</div><span class="name">Boat Momma</span><span class="desc">Sailed far, once. Still loved.</span></div>
+    </div>
+  </div>
+
+  <div class="note-section">
+    <details class="note-details">
+      <summary><span class="note-toggle">Open This One Last, If You Want To</span></summary>
+      <div class="note-card">
+        <p>Why I made this: because Fairy is simply the best, and the best deserves to have a fun story told about them. Every page, every wish, every wood, all of it was just an excuse to say that a little differently each time.</p>
+        <p>Thank you, for always and ever.</p>
+        <span class="note-signoff">always yours</span>
+      </div>
+    </details>
+  </div>
+
+  <div class="dedication">
+    For every version of you, wings or no wings, crown or no crown.
+    <span class="love">Always yours, always a queen.</span>
+  </div>
+
+</div>
+
+</body>
+</html>

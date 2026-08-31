@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esma & the Shadow Woods... A Fairyland Storybook</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Quicksand:wght@400;500;600&display=swap');
+
+  :root {
+    --parchment: #fdf6e3;
+    --parchment-dark: #f2e8cc;
+    --parchment-shadow: #d4c49a;
+    --ink: #2d1f0e;
+    --ink-light: #5a3e28;
+    --gold: #c8a83c;
+    --gold-light: #e8c84a;
+    --emerald: #3a7a4e;
+    --emerald-light: #5db87a;
+    --sky: #5b9bd5;
+    --rose: #d4607a;
+    --rose-light: #f0a0b8;
+    --amber: #e0903a;
+    --warning-green: #7ab83c;
+    --danger-yellow: #e8c832;
+    --purple: #8a5ab8;
+    --purple-light: #b090d8;
+    --teal: #3ab8a0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1208;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, #1a2a10 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 30%, #1a0a2a 0%, transparent 50%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 40px 20px;
+    font-family: 'Lora', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 60%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 40% 25%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 80%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 10%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 45%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5% 90%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 75%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(2px 2px at 33% 40%, rgba(220,200,255,0.8) 0%, transparent 100%),
+      radial-gradient(2px 2px at 67% 55%, rgba(200,220,255,0.7) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .book-cover {
+    position: relative;
+    width: 100%;
+    max-width: 780px;
+    background: linear-gradient(170deg, #3a2450, #200f38);
+    border: 6px solid #6a4a9a;
+    border-radius: 8px 24px 24px 8px;
+    box-shadow:
+      -8px 0 0 #0a0518,
+      -12px 4px 20px rgba(0,0,0,0.8),
+      inset 0 0 60px rgba(150, 100, 200, 0.08),
+      0 0 80px rgba(138, 90, 184, 0.25);
+    padding: 60px 50px;
+    text-align: center;
+    z-index: 10;
+    margin-bottom: 30px;
+  }
+
+  .cover-border {
+    border: 2px solid rgba(200, 168, 60, 0.4);
+    border-radius: 4px 18px 18px 4px;
+    padding: 40px 30px;
+    position: relative;
+  }
+
+  .cover-corner {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-color: var(--gold);
+    border-style: solid;
+    opacity: 0.7;
+  }
+  .cover-corner.tl { top: 8px; left: 8px; border-width: 2px 0 0 2px; }
+  .cover-corner.tr { top: 8px; right: 8px; border-width: 2px 2px 0 0; }
+  .cover-corner.bl { bottom: 8px; left: 8px; border-width: 0 0 2px 2px; }
+  .cover-corner.br { bottom: 8px; right: 8px; border-width: 0 2px 2px 0; }
+
+  .cover-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(22px, 5vw, 38px);
+    color: var(--gold-light);
+    text-shadow: 0 0 30px rgba(200, 168, 60, 0.6), 0 2px 4px rgba(0,0,0,0.8);
+    letter-spacing: 2px;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+
+  .cover-subtitle {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    color: var(--parchment-shadow);
+    font-size: 15px;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    opacity: 0.85;
+  }
+
+  .cover-illustration {
+    width: 220px;
+    height: 180px;
+    margin: 0 auto 30px;
+    position: relative;
+  }
+
+  .cover-byline {
+    font-family: 'Quicksand', sans-serif;
+    color: rgba(200, 168, 60, 0.6);
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 30px;
+  }
+
+  .book {
+    width: 100%;
+    max-width: 780px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .page {
+    background: var(--parchment);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    border: 1px solid var(--parchment-shadow);
+    border-radius: 4px 20px 20px 4px;
+    box-shadow:
+      -6px 0 0 #c8b896,
+      -10px 4px 15px rgba(0,0,0,0.5),
+      inset 40px 0 60px rgba(200,180,140,0.15),
+      0 4px 30px rgba(0,0,0,0.4);
+    padding: 50px 55px 60px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+    display: none;
+  }
+
+  .page.active { display: block; }
+
+  .page::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    background-image: repeating-linear-gradient(
+      transparent,
+      transparent 31px,
+      rgba(180,160,120,0.12) 31px,
+      rgba(180,160,120,0.12) 32px
+    );
+    pointer-events: none;
+  }
+
+  .page::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 40px;
+    background: linear-gradient(to right, rgba(180,150,100,0.3), transparent);
+    pointer-events: none;
+  }
+
+  .page-number {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 12px;
+    color: var(--parchment-shadow);
+    text-align: center;
+    margin-top: 30px;
+    letter-spacing: 3px;
+  }
+
+  .chapter-label {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.8;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .chapter-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(16px, 3.5vw, 26px);
+    color: var(--ink);
+    margin-bottom: 28px;
+    line-height: 1.3;
+    position: relative;
+  }
+
+  .chapter-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin-top: 14px;
+  }
+
+  .story-text {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(14px, 2.2vw, 16px);
+    color: var(--ink-light);
+    line-height: 1.9;
+    position: relative;
+    z-index: 1;
+  }
+
+  .story-text p { margin-bottom: 16px; text-indent: 2em; }
+  .story-text p:first-child { text-indent: 0; }
+
+  .drop-cap {
+    float: left;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 68px;
+    line-height: 0.7;
+    padding-top: 12px;
+    padding-right: 10px;
+    color: var(--emerald);
+    text-shadow: 2px 2px 0 rgba(60, 100, 60, 0.2);
+  }
+
+  .character-row {
+    display: flex;
+    gap: 14px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .character-card {
+    background: rgba(255,255,255,0.5);
+    border: 1px solid var(--parchment-shadow);
+    border-radius: 12px;
+    padding: 16px 14px;
+    text-align: center;
+    flex: 1;
+    min-width: 120px;
+    max-width: 160px;
+  }
+
+  .character-card .icon { font-size: 32px; margin-bottom: 6px; }
+  .character-card .name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 11px;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .character-card .desc {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 11px;
+    color: var(--ink-light);
+    line-height: 1.5;
+  }
+
+  .warning-box {
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 20px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .warning-box.danger {
+    background: rgba(232, 200, 50, 0.15);
+    border: 2px solid var(--danger-yellow);
+    border-left: 5px solid #c8a820;
+  }
+
+  .warning-box.caution {
+    background: rgba(90, 180, 60, 0.1);
+    border: 2px solid var(--warning-green);
+    border-left: 5px solid var(--warning-green);
+  }
+
+  .warning-box.shadow {
+    background: rgba(138, 90, 184, 0.1);
+    border: 2px solid var(--purple-light);
+    border-left: 5px solid var(--purple);
+  }
+
+  .warning-box .wlabel {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 12px;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .warning-box.danger .wlabel { color: #8a7000; }
+  .warning-box.caution .wlabel { color: #3a7a00; }
+  .warning-box.shadow .wlabel { color: #5a3a8a; }
+
+  .warning-box p {
+    font-family: 'Lora', serif;
+    font-size: 13px;
+    color: var(--ink-light);
+    line-height: 1.7;
+    text-indent: 0 !important;
+    margin: 0;
+  }
+
+  .wish-box {
+    background: rgba(58, 122, 78, 0.08);
+    border: 1px solid rgba(58, 122, 78, 0.35);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 20px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .wish-box .wish-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 12px;
+    color: var(--emerald);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .wish-box p {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-light);
+    text-indent: 0 !important;
+    margin: 0;
+  }
+
+  .nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0 0;
+    position: relative;
+    z-index: 1;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    background: linear-gradient(135deg, #200f38, #3a2450);
+    color: var(--gold);
+    border: 2px solid rgba(200, 168, 60, 0.5);
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+
+  .nav-btn:hover {
+    background: linear-gradient(135deg, #3a2450, #5a3a8a);
+    border-color: var(--gold);
+    box-shadow: 0 4px 20px rgba(200, 168, 60, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+
+  .page-indicator {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 12px;
+    color: rgba(200, 168, 60, 0.6);
+    letter-spacing: 3px;
+    text-align: center;
+    flex: 1;
+  }
+
+  .toc-dots {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+  }
+
+  .toc-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(200, 168, 60, 0.3);
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid rgba(200, 168, 60, 0.5);
+  }
+
+  .toc-dot.active {
+    background: var(--gold);
+    box-shadow: 0 0 8px rgba(200, 168, 60, 0.6);
+  }
+
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @keyframes twinkle { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+  .floating { animation: float 4s ease-in-out infinite; }
+  .twinkle { animation: twinkle 2s ease-in-out infinite; }
+
+  .ornamental-divider {
+    text-align: center;
+    color: var(--gold);
+    opacity: 0.5;
+    font-size: 18px;
+    margin: 18px 0;
+    letter-spacing: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .sparkle {
+    position: absolute;
+    pointer-events: none;
+    font-size: 14px;
+    opacity: 0.3;
+    animation: twinkle 3s ease-in-out infinite;
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 30px 24px 40px; }
+    .book-cover { padding: 30px 20px; }
+    .cover-border { padding: 20px 16px; }
+    .character-row { flex-direction: column; align-items: center; }
+    .character-card { max-width: 200px; width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Book Cover -->
+<div class="book-cover">
+  <div class="cover-border">
+    <span class="cover-corner tl"></span>
+    <span class="cover-corner tr"></span>
+    <span class="cover-corner bl"></span>
+    <span class="cover-corner br"></span>
+
+    <div class="cover-illustration">
+      <svg viewBox="0 0 220 180" width="100%" height="100%">
+        <ellipse cx="110" cy="150" rx="90" ry="14" fill="rgba(138,90,184,0.15)"/>
+        <g class="floating">
+          <ellipse cx="80" cy="110" rx="26" ry="30" fill="#e8e0f0"/>
+          <ellipse cx="80" cy="72" rx="17" ry="19" fill="#f0ead8"/>
+          <ellipse cx="70" cy="42" rx="6" ry="20" fill="#e8e0f0" transform="rotate(-12 70 42)"/>
+          <ellipse cx="90" cy="42" rx="6" ry="20" fill="#e8e0f0" transform="rotate(12 90 42)"/>
+          <ellipse cx="70" cy="34" rx="3" ry="10" fill="#f0a0b8" transform="rotate(-12 70 34)"/>
+          <ellipse cx="90" cy="34" rx="3" ry="10" fill="#f0a0b8" transform="rotate(12 90 34)"/>
+          <circle cx="74" cy="70" r="3.4" fill="#3a7a4e"/>
+          <circle cx="86" cy="70" r="3.4" fill="#3a7a4e"/>
+          <circle cx="74" cy="69" r="1" fill="#dff0d8"/>
+          <circle cx="86" cy="69" r="1" fill="#dff0d8"/>
+          <ellipse cx="80" cy="78" rx="2.5" ry="2" fill="#e0a0a8"/>
+        </g>
+        <g class="floating" style="animation-delay:1.2s">
+          <circle cx="150" cy="60" r="16" fill="rgba(232,200,74,0.85)"/>
+          <path d="M150 44 L153 56 L165 56 L155 63 L159 75 L150 68 L141 75 L145 63 L135 56 L147 56 Z" fill="#fdf6e3" opacity="0.9"/>
+        </g>
+        <circle class="twinkle" cx="40" cy="35" r="2" fill="#e8c84a"/>
+        <circle class="twinkle" cx="180" cy="100" r="2" fill="#b090d8" style="animation-delay:0.6s"/>
+        <circle class="twinkle" cx="30" cy="90" r="1.6" fill="#c8a83c" style="animation-delay:1s"/>
+      </svg>
+    </div>
+
+    <div class="cover-title">Esma &amp; the Shadow Woods</div>
+    <div class="cover-subtitle">a fairyland storybook, for anyone who needs a wish</div>
+    <div class="cover-byline">A New Chapter of Fairyland</div>
+  </div>
+</div>
+
+<!-- Navigation Dots -->
+<div class="toc-dots" id="tocDots"></div>
+
+<!-- Book Pages -->
+<div class="book" id="bookPages">
+
+<!-- PAGE 1 -->
+<div class="page active" id="page-1">
+  <span class="sparkle" style="top:8%;right:7%;animation-delay:0.3s">🌙</span>
+  <span class="sparkle" style="top:55%;left:3%;animation-delay:1s">⭐</span>
+  <span class="chapter-label">Chapter One</span>
+  <h2 class="chapter-title">The Third Wood</h2>
+  <div class="story-text">
+    <p><span class="drop-cap">E</span>very fairyland has its rules, and by now everyone knew the two woods well enough. The Yellow Woods, where you never went, not once, not ever. The Green Woods, where you listened close and stayed careful and were looked after in return.</p>
+    <p>But there was a third wood, and it did not appear on any map, because it did not stay in one place long enough to be mapped.</p>
+  </div>
+
+  <div class="warning-box shadow">
+    <span class="wlabel">🌫 The Shadow Woods... The In Between</span>
+    <p>It was not dangerous the way the Yellow Woods was dangerous, and it was not simply wise the way the Green Woods was wise. It was something else entirely. The Shadow Woods was where people and animals went when they were finished with one home and not yet arrived at the next one. Some were on their way up to heaven, walking slow and unafraid, taking their time to look back at everything they loved. Others were only passing through, on their way back to the ones who were waiting for them, worried, with the porch light on.</p>
+  </div>
+
+  <div class="story-text">
+    <p>Nobody in fairyland was frightened of the Shadow Woods, not really. They spoke of it softly, the way you speak of something important. Fairy said the trees there had no shadows of their own, being made of shadow already, quiet and silver and gentle as dusk. And if you stood very still at the edge of it, you could sometimes hear something like a door opening, far off, and then very softly, closing again behind whoever had just gone through.</p>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="changePage(-1)" disabled>← Back</button>
+    <span class="page-indicator">Page 1 of 10</span>
+    <button class="nav-btn" onclick="changePage(1)">Forward →</button>
+  </div>
+  <div class="page-number">~ 1 ~</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page-2">
+  <span class="chapter-label">Chapter Two</span>
+  <h2 class="chapter-title">Esma, Who Grants Wishes</h2>
+  <div class="story-text">
+    <p><span class="drop-cap">N</span>ot far from the edge of the Shadow Woods lived a rabbit named Esma. She had soft grey fur and two long ears that swiveled toward anything interesting, and eyes the color of new spring leaves, a bright and certain emerald green that seemed to hold a small light of their own.</p>
+    <p>Esma could grant wishes. Not big loud wishes with fireworks and trumpets, but small true ones, the kind that matter most. And the way you knew a wish was coming true was this: her little pink nose would crinkle, just once, quick as a blink, and whatever had been wished for, quietly and honestly, from the very middle of somebody's heart, would begin, somehow, to come true.</p>
+  </div>
+
+  <div class="wish-box">
+    <span class="wish-title">🐇 How to Tell a Wish Is Coming True</span>
+    <p>Esma's nose crinkles once. Quick, small, and certain. Blink and you might miss it, but the wish never does.</p>
+  </div>
+
+  <div class="story-text">
+    <p>She did not grant every wish. Wishing does not work that way, and Esma was far too wise a rabbit to pretend otherwise. But if a wish was kind, and true, and needed, her nose would crinkle without her even deciding to let it, and fairyland would shift, just slightly, to make room for it.</p>
+    <p>Esma lived close to the Shadow Woods on purpose. Someone gentle needed to be nearby, she said, for anyone passing through who might feel a little lost, or a little scared, or might simply want one small good thing to wish for on their way.</p>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="changePage(-1)">← Back</button>
+    <span class="page-indicator">Page 2 of 10</span>
+    <button class="nav-btn" onclick="changePage(1)">Forward →</button>
+  </div>
+  <div class="page-number">~ 2 ~</div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page-3">
+  <span class="chapter-label">Chapter Three</span>
+  <h2 class="chapter-title">Sometimes Andy Bean, Always a Queen</h2>
+  <div class="story-text">
+    <p><span class="drop-cap">N</span>ow, there is something about Fairy that must be explained properly, because it confuses newcomers to fairyland every single time.</p>
+    <p>Sometimes Fairy went by Fairy, wings out, wand ready, exactly as everyone in the old stories remembered. But sometimes, especially on quiet mornings or when only the closest friends were around, Fairy went by a different name entirely. Andy Bean.</p>
+    <p>Nobody could tell you exactly why, and Fairy never seemed to think it needed explaining. Andy Bean was every bit as brave as Fairy, every bit as kind, and every bit as fond of ice cream and terrible jokes and holding Princess Lauren's hand on the path home. The wings came and went, and the name came and went with them.</p>
+  </div>
+
+  <div class="ornamental-divider">✦ ✦ ✦</div>
+
+  <div class="story-text">
+    <p>But one thing never changed, no matter which name was being used that day. Fairy was a queen. Always. Whether flying as Fairy in a crown of gold, or walking as Andy Bean with hands in pockets and no crown in sight at all, the queen underneath was the very same one, steady and certain, the way the moon is still the moon whether you can see it that night or not.</p>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="changePage(-1)">← Back</button>
+    <span class="page-indicator">Page 3 of 10</span>
+    <button class="nav-btn" onclick="changePage(1)">Forward →</button>
+  </div>
+  <div class="page-number">~ 3 ~</div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page-4">
+  <span class="chapter-label">Chapter Four</span>
+  <h2 class="chapter-title">The Meeting at Madge's Pond</h2>
+  <div class="story-text">
+    <p><span class="drop-cap">E</span>sma first came to the castle garden on an ordinary afternoon, hopping along the path with her ears low and thoughtful. Madge was there first, as Madge always was, sitting beside her clear little pond with her ancient starry eyes half closed.</p>
+    <p>"You are the wishing rabbit," Madge said, not a question, the way turtles who have lived a very long time tend to say things.</p>
+    <p>"I am," said Esma, and her nose crinkled just slightly, out of habit, though she had not wished for anything at all.</p>
+    <p>One by one the others gathered, the way they always did in fairyland when something new and good had arrived. DanDan announced himself with a small shower of light where no one was standing, and a tiny rose colored gem appeared in the grass at Esma's feet as a kind of hello. Princess Lauren came running down from the meadow with her crown slightly crooked, delighted, already asking a hundred questions at once. Locks arrived more slowly, quietly beautiful as always, and sat close enough to the castle wall that LittleLove could peek out from behind it without having to come too far. And Seita, who had been napping in his teacup by the window, climbed up onto the sill just to see what the fuss was about, and did one small dramatic flip of approval when he spotted the rabbit with the emerald eyes.</p>
+  </div>
+
+  <div class="character-row">
+    <div class="character-card"><div class="icon">🐇</div><span class="name">Esma</span><span class="desc">The wishing rabbit. Emerald eyes, gentle heart.</span></div>
+    <div class="character-card"><div class="icon">🐢</div><span class="name">Madge</span><span class="desc">The magic turtle. Ancient, wise, unsurprised by anything.</span></div>
+    <div class="character-card"><div class="icon">🧚</div><span class="name">Fairy</span><span class="desc">Sometimes Andy Bean. Always a queen.</span></div>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="changePage(-1)">← Back</button>
+    <span class="page-indicator">Page 4 of 10</span>
+    <button class="nav-btn" onclick="changePage(1)">Forward →</button>
+  </div>
+  <div class="page-number">~ 4 ~</div>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="page-5">
+  <span class="chapter-label">Chapter Five</span>
+  <h2 class="chapter-title">DanDan's Gems Light the Path</h2>
+  <div class="story-text">
+    <p><span class="drop-cap">I</span>t did not take long for the friends to learn what Esma already knew, that living so close to the Shadow Woods meant something interesting happened almost every week.</p>
+    <p>One evening, DanDan came back from the edge of the woods without his favorite gem, a deep blue sapphire he had carried since before anyone could remember. He had dropped it while helping someone find their way through, he explained, someone small and frightened who had wandered in without meaning to and could not remember which direction was home.</p>
+    <p>"I gave them the sapphire to hold," DanDan said, and though nobody could see his face, everyone could hear that he was smiling. "Light helps. Even light you cannot keep."</p>
+    <p>Esma's nose crinkled at that, quick and certain, and by morning a new gem had appeared at the edge of the Shadow Woods, waiting for DanDan exactly where the old one had been lost. Fairy, who was going by Andy Bean that particular morning, said that was simply how the Shadow Woods worked. What you gave away kindly there had a way of finding its way back to you, just a little different, and just as bright.</p>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="changePage(-1)">← Back</button>
+    <span class="page-indicator">Page 5 of 10</span>
+    <button class="nav-btn" onclick="changePage(1)">Forward →</button>
+  </div>
+  <div class="page-number">~ 5 ~</div>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page" id="page-6">
+  <span class="chapter-label">Chapter Six</span>
+  <h2 class="chapter-title">Princess Lauren, Locks, and LittleLove</h2>
+  <div class="story-text">
+    <p><span class="drop-cap">P</span>rincess Lauren was not afraid of the Shadow Woods either, though she admitted, quietly, holding Fairy's hand, that it made her feel something bigger than fear. Something more like missing someone before you have even said goodbye to them.</p>
+    <p>"Boat Momma sailed a long way once," she said one evening, watching the silver trees at the edge of the dark. "Not through there. But it made me think of it. Going somewhere far, and trusting it's the right somewhere."</p>
+    <p>Fairy squeezed her hand and said nothing, because some things do not need an answer, only a hand to hold while you think them.</p>
+    <p>Locks, who loved the castle completely, took to leaving a lantern lit in the highest window every night, just in case anyone passing through the Shadow Woods needed one small warm light to walk toward. And LittleLove, shy as ever, found the courage to glow a little brighter near the woods' edge than anywhere else in fairyland, without anyone even having to ask. Some fears get smaller, Locks said, when you turn them into something useful instead.</p>
+  </div>
+
+  <div class="character-row">
+    <div class="character-card"><div class="icon">👑</div><span class="name">Princess Lauren</span><span class="desc">Kind, curious, holds Fairy's hand on the way home.</span></div>
+    <div class="character-card"><div class="icon">💫</div><span class="name">Locks</span><span class="desc">Beautiful, steady. Keeps the lantern lit.</span></div>
+    <div class="character-card"><div class="icon">✨</div><span class="name">LittleLove</span><span class="desc">Shy and glowing. Braver than she thinks.</span></div>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="changePage(-1)">← Back</button>
+    <span class="page-indicator">Page 6 of 10</span>
+    <button class="nav-btn" onclick="changePage(1)">Forward →</button>
+  </div>
+  <div class="page-number">~ 6 ~</div>
+</div>
+
+<!-- PAGE 7 -->
+<div class="page" id="page-7">
+  <span class="chapter-label">Chapter Seven</span>
+  <h2 class="chapter-title">Seita's Wish</h2>
+  <div class="story-text">
+    <p><span class="drop-cap">E</span>ven Seita, who mostly kept his opinions to himself, had something to say about the Shadow Woods, once Esma finally understood him.</p>
+    <p>It turned out Seita had a wish of his own, small and specific the way a prawn's wishes tend to be. He wished, more than anything, that whoever passed through the Shadow Woods might have something warm to look forward to on the other side, whichever side that turned out to be.</p>
+  </div>
+
+  <div class="wish-box">
+    <span class="wish-title">🦐 Seita's Wish</span>
+    <p>That whoever walks through finds something warm waiting for them. On any side.</p>
+  </div>
+
+  <div class="story-text">
+    <p>Esma's nose crinkled at that too, longer this time, the way it did for wishes made on behalf of somebody else instead of yourself, which Esma always said were the strongest kind. From that day on, warmth seemed to follow the path through the Shadow Woods just a little more reliably than it had before, though nobody could ever quite explain why, except that a prawn in a teacup had wished for it once, sincerely, and Esma had been listening.</p>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="changePage(-1)">← Back</button>
+    <span class="page-indicator">Page 7 of 10</span>
+    <button class="nav-btn" onclick="changePage(1)">Forward →</button>
+  </div>
+  <div class="page-number">~ 7 ~</div>
+</div>
+
+<!-- PAGE 8 -->
+<div class="page" id="page-8">
+  <span class="chapter-label">Chapter Eight</span>
+  <h2 class="chapter-title">The Lost Little One Finds Home</h2>
+  <div class="story-text">
+    <p><span class="drop-cap">O</span>ne night, a very small sound came from the edge of the Shadow Woods, a sound like someone trying very hard not to cry and not quite managing it.</p>
+    <p>It was a little firefly, barely lit at all, who had wandered in from somewhere far off and could not remember which direction led home and which direction led onward. Fairy, as Andy Bean that night, went in first, unafraid, because a queen does not let a small frightened light spend one more minute alone in the dark. Madge came next, slow and certain, because the very old always know the way better than they let on. DanDan's gems lit the path in soft colors, and Locks's lantern glowed steady in the highest window, and LittleLove's glow reached further into the dark than it ever had before. Princess Lauren stood at the very edge, holding both hands out, ready. And Seita, from his teacup, did his small dramatic flip, just to let the little firefly know that somebody, somewhere, was cheering for it.</p>
+    <p>Esma walked all the way in, right up beside the firefly, and asked it very gently what it wished for.</p>
+    <p>"Home," the firefly said. Just that. "I wish I could find my way home."</p>
+  </div>
+
+  <div class="wish-box">
+    <span class="wish-title">🐇 The Crinkle</span>
+    <p>Esma's nose crinkled once, quick and sure and full of certainty. And somewhere close by, a small warm light turned on, in a window, in a place that had been waiting.</p>
+  </div>
+
+  <div class="story-text">
+    <p>The firefly felt it before it saw it, a pull like a hand reaching back for its hand, and it followed that pull out of the Shadow Woods, past Princess Lauren's open hands, past Locks's lantern, out into the ordinary night, home.</p>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="changePage(-1)">← Back</button>
+    <span class="page-indicator">Page 8 of 10</span>
+    <button class="nav-btn" onclick="changePage(1)">Forward →</button>
+  </div>
+  <div class="page-number">~ 8 ~</div>
+</div>
+
+<!-- PAGE 9 -->
+<div class="page" id="page-9">
+  <span class="chapter-label">Chapter Nine</span>
+  <h2 class="chapter-title">The Rules of the Woods, Now Three</h2>
+  <div class="story-text">
+    <p><span class="drop-cap">A</span>nd so the rules of fairyland were written again, this time with a third wood added beside the other two.</p>
+  </div>
+
+  <div class="warning-box danger">
+    <span class="wlabel">⚠ The Yellow Woods... Stay Out</span>
+    <p>Still avoided, still unexplained, still exactly as unwelcoming as it had always been. <strong>Fairy never went there. Not once. Not ever.</strong></p>
+  </div>
+
+  <div class="warning-box caution">
+    <span class="wlabel">🌿 The Green Woods... Tread Carefully</span>
+    <p>Still wise, still watching out for anyone who paid attention. <strong>Always listen in the Green Woods.</strong></p>
+  </div>
+
+  <div class="warning-box shadow">
+    <span class="wlabel">🌫 The Shadow Woods... Walk Gently</span>
+    <p>Not frightening, not final, only in between. Bring a wish if you have one. Bring a friend if you can. <strong>Esma is never far from the edge of it.</strong></p>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="changePage(-1)">← Back</button>
+    <span class="page-indicator">Page 9 of 10</span>
+    <button class="nav-btn" onclick="changePage(1)">Forward →</button>
+  </div>
+  <div class="page-number">~ 9 ~</div>
+</div>
+
+<!-- PAGE 10 -->
+<div class="page" id="page-10">
+  <span class="chapter-label">Chapter Ten</span>
+  <h2 class="chapter-title">Every Evening in Fairyland Now</h2>
+  <div class="story-text">
+    <p><span class="drop-cap">A</span>nd so, every evening in fairyland now, this is how things are. Fairy, whether flying as Fairy or walking as Andy Bean, comes home the same way, always a queen underneath it all. Madge waits by the pond, older and wiser with every wish granted nearby. DanDan's gems glitter a little brighter near the Shadow Woods than anywhere else, because that is where they matter most.</p>
+    <p>Princess Lauren's hand finds Fairy's hand on the path home, same as always. Locks keeps her lantern lit in the highest window, and LittleLove glows steady at the edge of the dark, and Seita does one small dramatic flip every evening, just because he can.</p>
+    <p>And Esma, the wishing rabbit with the emerald eyes, sits close to the edge of the Shadow Woods, ears soft and listening, waiting for whoever might need one small true wish on their way through, to heaven, or to home, whichever way they happen to be going.</p>
+    <p>Her nose crinkles more evenings than not. Fairyland, everyone agrees, is better for it.</p>
+  </div>
+
+  <div class="ornamental-divider">✦ ✦ ✦</div>
+
+  <div class="character-row">
+    <div class="character-card"><div class="icon">🦐</div><span class="name">Seita</span><span class="desc">The pet prawn. Small, dramatic, faithful.</span></div>
+    <div class="character-card"><div class="icon">💎</div><span class="name">DanDan</span><span class="desc">Invisible. Never without a gem to give.</span></div>
+    <div class="character-card"><div class="icon">⛵</div><span class="name">Boat Momma</span><span class="desc">Sailed far, once. Still loved just as much.</span></div>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="changePage(-1)">← Back</button>
+    <span class="page-indicator">Page 10 of 11</span>
+    <button class="nav-btn" onclick="changePage(1)">Forward →</button>
+  </div>
+  <div class="page-number">~ 10 ~</div>
+</div>
+
+<!-- PAGE 11 -->
+<div class="page" id="page-11" style="position:relative;overflow:hidden;">
+  <span class="sparkle" style="top:8%;right:7%;animation-delay:0.3s">🌙</span>
+  <span class="sparkle" style="top:55%;left:3%;animation-delay:1s">⭐</span>
+  <span class="sparkle" style="top:80%;right:5%;animation-delay:0.7s">✨</span>
+
+  <span class="chapter-label">One Last Wish</span>
+  <h2 class="chapter-title">The Colors of Loving Fairy</h2>
+  <p style="font-family:'Lora',serif;font-style:italic;font-size:13px;color:var(--parchment-shadow);letter-spacing:2px;margin-bottom:28px;position:relative;z-index:1;text-align:left;">a poem, said all in one breath</p>
+
+  <div style="font-family:'Lora',serif;font-size:15px;color:var(--ink-light);line-height:2;position:relative;z-index:1;max-width:440px;">
+    <p style="text-indent:0;margin-bottom:0;">Red is for my heart,</p>
+    <p style="text-indent:0;margin-bottom:0;">it goes thump thump thump.</p>
+    <p style="text-indent:0;margin-bottom:20px;">Orange is for sunset, when Fairy flies home.</p>
+
+    <p style="text-indent:0;margin-bottom:0;">Yellow is for the woods you stay out of,</p>
+    <p style="text-indent:0;margin-bottom:20px;">I remembered, see, I did.</p>
+
+    <p style="text-indent:0;margin-bottom:0;">Green is for Esma's eyes,</p>
+    <p style="text-indent:0;margin-bottom:0;">and for the wood that's careful,</p>
+    <p style="text-indent:0;margin-bottom:20px;">and green is for your ice cream too, my favorite kind.</p>
+
+    <p style="text-indent:0;margin-bottom:0;">Blue is for your wings,</p>
+    <p style="text-indent:0;margin-bottom:20px;">and blue is for the deep Australian sky.</p>
+
+    <p style="text-indent:0;margin-bottom:0;">Purple is for the Shadow Woods,</p>
+    <p style="text-indent:0;margin-bottom:20px;">it isn't scary, Esma said so, and I believe her.</p>
+
+    <p style="text-indent:0;margin-bottom:0;">Pink is for Princess Lauren's cheeks,</p>
+    <p style="text-indent:0;margin-bottom:20px;">and gold, gold is for your crown.</p>
+
+    <p style="text-indent:0;margin-bottom:0;">And I know you're Fairy,</p>
+    <p style="text-indent:0;margin-bottom:0;">and I know you're Andy Bean too,</p>
+    <p style="text-indent:0;margin-bottom:20px;">and I know underneath it all you are always my queen.</p>
+
+    <p style="text-indent:0;margin-bottom:0;">So that's all the colors,</p>
+    <p style="text-indent:0;margin-bottom:0;">that's all of them, every one,</p>
+    <p style="text-indent:0;margin-bottom:0;">and I saved the best word for last because that's how you're supposed to do it.</p>
+    <p style="text-indent:0;margin-bottom:0;font-family:'Cinzel Decorative',serif;font-size:17px;color:var(--emerald);margin-top:12px;">I love you, Fairy.</p>
+  </div>
+
+  <div class="nav-row" style="margin-top:28px;">
+    <button class="nav-btn" onclick="changePage(-1)">← Back</button>
+    <span class="page-indicator">Page 11 of 11</span>
+    <button class="nav-btn" onclick="changePage(1)" disabled>Forward →</button>
+  </div>
+  <div class="page-number">~ 11 ~</div>
+</div>
+
+</div>
+
+<script>
+  let currentPage = 1;
+  const totalPages = 11;
+
+  function buildDots() {
+    const container = document.getElementById('tocDots');
+    container.innerHTML = '';
+    for (let i = 1; i <= totalPages; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'toc-dot' + (i === currentPage ? ' active' : '');
+      dot.setAttribute('aria-label', `Go to page ${i}`);
+      dot.onclick = () => goToPage(i);
+      container.appendChild(dot);
+    }
+  }
+
+  function goToPage(n) {
+    document.getElementById(`page-${currentPage}`).classList.remove('active');
+    currentPage = n;
+    document.getElementById(`page-${currentPage}`).classList.add('active');
+    buildDots();
+    updateButtons();
+    window.scrollTo({ top: document.getElementById('tocDots').offsetTop - 20, behavior: 'smooth' });
+  }
+
+  function changePage(dir) {
+    const next = currentPage + dir;
+    if (next < 1 || next > totalPages) return;
+    goToPage(next);
+  }
+
+  function updateButtons() {
+    document.querySelectorAll('[onclick="changePage(-1)"]').forEach(b => b.disabled = currentPage === 1);
+    document.querySelectorAll('[onclick="changePage(1)"]').forEach(b => b.disabled = currentPage === totalPages);
+  }
+
+  buildDots();
+  updateButtons();
+</script>
+</body>
+</html>

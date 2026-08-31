@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Euna & the Rainbow Woods Playground... A Fairyland Storybook</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Quicksand:wght@400;500;600&display=swap');
+
+  :root {
+    --parchment: #fdf6e3;
+    --parchment-dark: #f2e8cc;
+    --parchment-shadow: #d4c49a;
+    --ink: #2d1f0e;
+    --ink-light: #5a3e28;
+    --gold: #c8a83c;
+    --gold-light: #e8c84a;
+    --emerald: #3a7a4e;
+    --emerald-light: #5db87a;
+    --sky: #5b9bd5;
+    --rose: #d4607a;
+    --rose-light: #f0a0b8;
+    --amber: #e0903a;
+    --purple: #8a5ab8;
+    --purple-light: #b090d8;
+    --teal: #3ab8a0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #10180f;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, #1a2a10 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 30%, #10202a 0%, transparent 50%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 40px 20px;
+    font-family: 'Lora', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 60%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 40% 25%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 80%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 10%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 45%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(2px 2px at 33% 40%, rgba(150,220,200,0.8) 0%, transparent 100%),
+      radial-gradient(2px 2px at 67% 55%, rgba(255,220,180,0.7) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .book-cover {
+    position: relative;
+    width: 100%;
+    max-width: 780px;
+    background: linear-gradient(170deg, #163a1a, #0a2010);
+    border: 6px solid #4a8a5a;
+    border-radius: 8px 24px 24px 8px;
+    box-shadow:
+      -8px 0 0 #051008,
+      -12px 4px 20px rgba(0,0,0,0.8),
+      inset 0 0 60px rgba(90, 200, 130, 0.06),
+      0 0 80px rgba(90, 200, 130, 0.2);
+    padding: 60px 50px;
+    text-align: center;
+    z-index: 10;
+    margin-bottom: 30px;
+  }
+
+  .cover-border {
+    border: 2px solid rgba(200, 168, 60, 0.4);
+    border-radius: 4px 18px 18px 4px;
+    padding: 40px 30px;
+    position: relative;
+  }
+
+  .cover-corner {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-color: var(--gold);
+    border-style: solid;
+    opacity: 0.7;
+  }
+  .cover-corner.tl { top: 8px; left: 8px; border-width: 2px 0 0 2px; }
+  .cover-corner.tr { top: 8px; right: 8px; border-width: 2px 2px 0 0; }
+  .cover-corner.bl { bottom: 8px; left: 8px; border-width: 0 0 2px 2px; }
+  .cover-corner.br { bottom: 8px; right: 8px; border-width: 0 2px 2px 0; }
+
+  .cover-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(20px, 4.6vw, 34px);
+    color: var(--gold-light);
+    text-shadow: 0 0 30px rgba(200, 168, 60, 0.6), 0 2px 4px rgba(0,0,0,0.8);
+    letter-spacing: 2px;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+
+  .cover-subtitle {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    color: var(--parchment-shadow);
+    font-size: 15px;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    opacity: 0.85;
+  }
+
+  .cover-illustration { width: 220px; height: 180px; margin: 0 auto 30px; position: relative; }
+
+  .cover-byline {
+    font-family: 'Quicksand', sans-serif;
+    color: rgba(200, 168, 60, 0.6);
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 30px;
+  }
+
+  .book { width: 100%; max-width: 780px; position: relative; z-index: 10; }
+
+  .page {
+    background: var(--parchment);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    border: 1px solid var(--parchment-shadow);
+    border-radius: 4px 20px 20px 4px;
+    box-shadow:
+      -6px 0 0 #c8b896,
+      -10px 4px 15px rgba(0,0,0,0.5),
+      inset 40px 0 60px rgba(200,180,140,0.15),
+      0 4px 30px rgba(0,0,0,0.4);
+    padding: 50px 55px 60px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+    display: none;
+  }
+
+  .page.active { display: block; }
+
+  .page::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    background-image: repeating-linear-gradient(
+      transparent, transparent 31px,
+      rgba(180,160,120,0.12) 31px, rgba(180,160,120,0.12) 32px
+    );
+    pointer-events: none;
+  }
+
+  .page::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 40px;
+    background: linear-gradient(to right, rgba(180,150,100,0.3), transparent);
+    pointer-events: none;
+  }
+
+  .page-number {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 12px;
+    color: var(--parchment-shadow);
+    text-align: center;
+    margin-top: 30px;
+    letter-spacing: 3px;
+  }
+
+  .chapter-label {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.8;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .chapter-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(16px, 3.5vw, 26px);
+    color: var(--ink);
+    margin-bottom: 28px;
+    line-height: 1.3;
+    position: relative;
+  }
+
+  .chapter-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin-top: 14px;
+  }
+
+  .story-text {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(14px, 2.2vw, 16px);
+    color: var(--ink-light);
+    line-height: 1.9;
+    position: relative;
+    z-index: 1;
+  }
+
+  .story-text p { margin-bottom: 16px; text-indent: 2em; }
+  .story-text p:first-child { text-indent: 0; }
+
+  .drop-cap {
+    float: left;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 68px;
+    line-height: 0.7;
+    padding-top: 12px;
+    padding-right: 10px;
+    color: var(--emerald);
+    text-shadow: 2px 2px 0 rgba(60, 100, 60, 0.2);
+  }
+
+  .character-row {
+    display: flex;
+    gap: 14px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .character-card {
+    background: rgba(255,255,255,0.5);
+    border: 1px solid var(--parchment-shadow);
+    border-radius: 12px;
+    padding: 16px 14px;
+    text-align: center;
+    flex: 1;
+    min-width: 120px;
+    max-width: 160px;
+  }
+
+  .character-card .icon { font-size: 32px; margin-bottom: 6px; }
+  .character-card .name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 11px;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .character-card .desc {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 11px;
+    color: var(--ink-light);
+    line-height: 1.5;
+  }
+
+  .secret-box {
+    background: rgba(58, 122, 78, 0.08);
+    border: 2px solid var(--emerald-light);
+    border-left: 5px solid var(--emerald);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 20px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .secret-box .slabel {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 12px;
+    color: #2a5a3a;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .secret-box p {
+    font-family: 'Lora', serif;
+    font-size: 13px;
+    color: var(--ink-light);
+    line-height: 1.7;
+    text-indent: 0 !important;
+    margin: 0;
+  }
+
+  .music-note-box {
+    background: rgba(138, 90, 184, 0.08);
+    border: 1px solid rgba(138, 90, 184, 0.3);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 20px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .music-note-box .music-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 12px;
+    color: var(--purple);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .music-note-box p {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-light);
+    text-indent: 0 !important;
+    margin: 0;
+  }
+
+  .nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0 0;
+    position: relative;
+    z-index: 1;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    background: linear-gradient(135deg, #0a2010, #163a1a);
+    color: var(--gold);
+    border: 2px solid rgba(200, 168, 60, 0.5);
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+
+  .nav-btn:hover {
+    background: linear-gradient(135deg, #163a1a, #2a6a3a);
+    border-color: var(--gold);
+    box-shadow: 0 4px 20px rgba(200, 168, 60, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+
+  .page-indicator {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 12px;
+    color: rgba(200, 168, 60, 0.6);
+    letter-spacing: 3px;
+    text-align: center;
+    flex: 1;
+  }
+
+  .toc-dots {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+  }
+
+  .toc-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(200, 168, 60, 0.3);
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid rgba(200, 168, 60, 0.5);
+  }
+
+  .toc-dot.active {
+    background: var(--gold);
+    box-shadow: 0 0 8px rgba(200, 168, 60, 0.6);
+  }
+
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @keyframes twinkle { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+  .floating { animation: float 4s ease-in-out infinite; }
+  .twinkle { animation: twinkle 2s ease-in-out infinite; }
+
+  .ornamental-divider {
+    text-align: center;
+    color: var(--gold);
+    opacity: 0.5;
+    font-size: 18px;
+    margin: 18px 0;
+    letter-spacing: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .sparkle {
+    position: absolute;
+    pointer-events: none;
+    font-size: 14px;
+    opacity: 0.3;
+    animation: twinkle 3s ease-in-out infinite;
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 30px 24px 40px; }
+    .book-cover { padding: 30px 20px; }
+    .cover-border { padding: 20px 16px; }
+    .character-row { flex-direction: column; align-items: center; }
+    .character-card { max-width: 200px; width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Book Cover -->
+<div class="book-cover">
+  <div class="cover-border">
+    <span class="cover-corner tl"></span>
+    <span class="cover-corner tr"></span>
+    <span class="cover-corner bl"></span>
+    <span class="cover-corner br"></span>
+
+    <div class="cover-illustration">
+      <svg viewBox="0 0 220 180" width="100%" height="100%">
+        <ellipse cx="110" cy="150" rx="90" ry="12" fill="rgba(90,200,130,0.15)"/>
+        <g class="floating">
+          <circle cx="100" cy="115" r="26" fill="#e0903a"/>
+          <circle cx="100" cy="115" r="26" fill="none" stroke="#c87020" stroke-width="2"/>
+          <path d="M100 115 m0 0 a10 10 0 0 1 10 -10 a7 7 0 0 1 7 7 a5 5 0 0 1 -5 5 a3 3 0 0 1 -3 -3" fill="none" stroke="#c87020" stroke-width="1.5" opacity="0.6"/>
+          <ellipse cx="126" cy="98" rx="10" ry="8" fill="#e8b880"/>
+          <circle cx="120" cy="94" r="2.4" fill="#2d1f0e"/>
+          <circle cx="130" cy="94" r="2.4" fill="#2d1f0e"/>
+          <line x1="120" y1="88" x2="118" y2="80" stroke="#e8b880" stroke-width="2"/>
+          <line x1="130" y1="88" x2="132" y2="80" stroke="#e8b880" stroke-width="2"/>
+        </g>
+        <circle class="twinkle" cx="45" cy="45" r="2" fill="#e8c84a"/>
+        <circle class="twinkle" cx="175" cy="60" r="2" fill="#5db87a" style="animation-delay:0.6s"/>
+        <circle class="twinkle" cx="30" cy="100" r="1.6" fill="#c8a83c" style="animation-delay:1s"/>
+      </svg>
+    </div>
+
+    <div class="cover-title">Euna &amp; the Rainbow Woods Playground</div>
+    <div class="cover-subtitle">a fairyland storybook, about a quiet secret and an easy afternoon</div>
+    <div class="cover-byline">A New Chapter of Fairyland</div>
+  </div>
+</div>
+
+<div class="toc-dots" id="tocDots"></div>
+
+<div class="book" id="bookPages">
+
+<!-- PAGE 1 -->
+<div class="page active" id="page-1">
+  <span class="chapter-label">Chapter One</span>
+  <h2 class="chapter-title">The Snail Who Keeps a Secret</h2>
+  <div class="story-text">
+    <p><span class="drop-cap">D</span>own by the teacup window, where Seita had lived for as long as anyone could remember, there lived a snail named Euna. She was small and slow and perfectly content to stay that way, and most of the time you would only ever see the curve of her shell, tucked in tight, waiting patiently for whatever came next.</p>
+    <p>Everyone in fairyland agreed that Euna was magical. That much was obvious, the way it is obvious that a star is bright even before you know exactly what it is made of. But how her magic worked, and what it actually did, was a secret that only two creatures in all of fairyland were allowed to know. Seita, because he was her oldest friend and had never once told a secret in his life, prawn or otherwise. And DanDan, because he was invisible already, and Euna said an invisible friend was the safest place in the world to keep a secret.</p>
+  </div>
+
+  <div class="secret-box">
+    <span class="slabel">🐌 What Fairyland Knows About Euna</span>
+    <p>She is magical. That part everyone agrees on. The rest, only Seita and DanDan know, and neither one is telling.</p>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="changePage(-1)" disabled>← Back</button>
+    <span class="page-indicator">Page 1 of 7</span>
+    <button class="nav-btn" onclick="changePage(1)">Forward →</button>
+  </div>
+  <div class="page-number">~ 1 ~</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page-2">
+  <span class="chapter-label">Chapter Two</span>
+  <h2 class="chapter-title">An Ordinary Afternoon at the Park</h2>
+  <div class="story-text">
+    <p><span class="drop-cap">O</span>n an ordinary afternoon, the kind fairyland had plenty of, Fairy took Princess Lauren and LittleLove to the little park at the edge of the meadow, the one with the crooked swing and the pond just beyond it. Seita came too, riding along in his teacup the way he preferred to travel, and Euna rode beside him on a small white saucer, tucked into her shell and perfectly happy to be carried.</p>
+    <p>Fairy set the teacup and the saucer down on the flat stone by the swings, side by side, exactly the way Seita liked it. "You've got the best seats in the house," Fairy told them both, and Seita did a small proud flip that sloshed a little tea over the rim, which nobody minded in the slightest.</p>
+  </div>
+
+  <div class="character-row">
+    <div class="character-card"><div class="icon">🦐</div><span class="name">Seita</span><span class="desc">In his teacup, watching everything, missing nothing.</span></div>
+    <div class="character-card"><div class="icon">🐌</div><span class="name">Euna</span><span class="desc">On the saucer beside him. Magical, and not telling how.</span></div>
+    <div class="character-card"><div class="icon">✨</div><span class="name">LittleLove</span><span class="desc">At the park today, out from behind his tree.</span></div>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="changePage(-1)">← Back</button>
+    <span class="page-indicator">Page 2 of 7</span>
+    <button class="nav-btn" onclick="changePage(1)">Forward →</button>
+  </div>
+  <div class="page-number">~ 2 ~</div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page-3">
+  <span class="chapter-label">Chapter Three</span>
+  <h2 class="chapter-title">The Kookaburra Who Laughs at Everything</h2>
+  <div class="story-text">
+    <p><span class="drop-cap">F</span>ar off at the edge of the park, in the branches of a gum tree that leaned out over everything like it was keeping watch, sat an old wise kookaburra. He had been laughing, on and off, for as long as anyone could remember, and nobody had ever quite figured out what was so funny.</p>
+    <p>He laughed when Princess Lauren tripped over nothing at all and laughed harder when she laughed right back at herself. He laughed when the wind took LittleLove's hat clean off his head. He laughed, mostly, because laughing was simply what old wise kookaburras did with an afternoon this good, and fairyland had long since decided his laugh was one of the nicest sounds in the whole park, better than any song, better even than DanDan's gems clicking together.</p>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="changePage(-1)">← Back</button>
+    <span class="page-indicator">Page 3 of 7</span>
+    <button class="nav-btn" onclick="changePage(1)">Forward →</button>
+  </div>
+  <div class="page-number">~ 3 ~</div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page-4">
+  <span class="chapter-label">Chapter Four</span>
+  <h2 class="chapter-title">Seita's Dance</h2>
+  <div class="story-text">
+    <p><span class="drop-cap">S</span>omewhere around the middle of the afternoon, with the kookaburra laughing steady in the background, Seita decided the teacup needed dancing in, and so he danced in it. It was not a graceful dance, exactly, all quick little turns and one dramatic flip that splashed tea onto the stone, but it was enthusiastic, and Euna, tucked in her shell on the saucer beside him, gave the smallest shiver of a laugh that only Seita ever noticed.</p>
+    <p>"You're going to fall out of that cup one day," Euna said, in the quiet way she said most things.</p>
+    <p>"Probably," Seita agreed, and kept dancing anyway.</p>
+  </div>
+
+  <div class="music-note-box">
+    <span class="music-title">🎶 The Sound of the Afternoon</span>
+    <p>A kookaburra laughing, a prawn dancing in a teacup, and somewhere close by, a snail almost laughing too.</p>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="changePage(-1)">← Back</button>
+    <span class="page-indicator">Page 4 of 7</span>
+    <button class="nav-btn" onclick="changePage(1)">Forward →</button>
+  </div>
+  <div class="page-number">~ 4 ~</div>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="page-5">
+  <span class="chapter-label">Chapter Five</span>
+  <h2 class="chapter-title">Madge, Floating</h2>
+  <div class="story-text">
+    <p><span class="drop-cap">J</span>ust beyond the swings, in the little pond that caught all the afternoon light, Madge floated on her back, ancient and unhurried, eyes half closed, in no rush to be anywhere else at all. She had come to watch the children play, the way she always did, and to be near enough that if anyone needed her slow, sure kind of wisdom, she would be right there.</p>
+    <p>All was well. That was the thing about Madge floating in the pond on a good afternoon. Fairyland always seemed to settle just a little, right down into itself, whenever Madge decided it was a floating kind of day.</p>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="changePage(-1)">← Back</button>
+    <span class="page-indicator">Page 5 of 7</span>
+    <button class="nav-btn" onclick="changePage(1)">Forward →</button>
+  </div>
+  <div class="page-number">~ 5 ~</div>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page" id="page-6">
+  <span class="chapter-label">Chapter Six</span>
+  <h2 class="chapter-title">Playing with Her New Best Friend</h2>
+  <div class="story-text">
+    <p><span class="drop-cap">P</span>rincess Lauren and LittleLove took over the swings for most of the afternoon, pushing each other higher and higher and arguing happily about whose turn it was next. LittleLove had come out from behind his tree for this, all the way out, and did not once think about going back to it while there was still swinging to be done.</p>
+    <p>Somewhere in the middle of it all, Princess Lauren thought, just briefly, about a boat that might have sailed away once, off toward some far and different land. She was not entirely sure it had. She could not quite remember, and for a moment that not knowing sat strangely in her chest.</p>
+    <p>But then LittleLove called her name from the top of the swing, laughing, and the kookaburra laughed along with him from his branch, and Seita did another dramatic flip in his teacup, and the not knowing did not seem to matter so very much after all. Whatever had or had not sailed away, she had a new best friend right here, right now, pushing her higher on the swing, and that was a very good thing to have.</p>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="changePage(-1)">← Back</button>
+    <span class="page-indicator">Page 6 of 7</span>
+    <button class="nav-btn" onclick="changePage(1)">Forward →</button>
+  </div>
+  <div class="page-number">~ 6 ~</div>
+</div>
+
+<!-- PAGE 7 -->
+<div class="page" id="page-7">
+  <span class="chapter-label">Chapter Seven</span>
+  <h2 class="chapter-title">The Rainbow Woods Playground</h2>
+  <div class="story-text">
+    <p><span class="drop-cap">A</span>nd that was the secret about this particular park, the one with the crooked swing and the pond and the gum tree with the laughing kookaburra in it. It sat right at the edge of the Rainbow Woods, and the Rainbow Woods, everyone in fairyland knew, was safe. Truly safe, the kind of safe you did not have to think twice about.</p>
+    <p>So Fairy let Princess Lauren and LittleLove swing as high as they liked. Seita danced in his teacup until the tea was mostly gone. Euna stayed curled on her saucer, magical and quiet and not telling how. Madge floated. The kookaburra laughed. And the whole afternoon went by exactly the easy, unhurried way a good afternoon in the Rainbow Woods is supposed to go, with nothing to worry about at all, and a new best friend to swing beside until the sun started sinking low.</p>
+  </div>
+
+  <div class="ornamental-divider">✦ ✦ ✦</div>
+
+  <div class="character-row">
+    <div class="character-card"><div class="icon">🐢</div><span class="name">Madge</span><span class="desc">Floating in the pond. All is well.</span></div>
+    <div class="character-card"><div class="icon">🦘</div><span class="name">The Kookaburra</span><span class="desc">Old, wise, laughing at everything.</span></div>
+    <div class="character-card"><div class="icon">💎</div><span class="name">DanDan</span><span class="desc">Knows Euna's secret. Isn't telling either.</span></div>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="changePage(-1)">← Back</button>
+    <span class="page-indicator">Page 7 of 7</span>
+    <button class="nav-btn" onclick="changePage(1)" disabled>Forward →</button>
+  </div>
+  <div class="page-number">~ 7 ~</div>
+</div>
+
+</div>
+
+<script>
+  let currentPage = 1;
+  const totalPages = 7;
+
+  function buildDots() {
+    const container = document.getElementById('tocDots');
+    container.innerHTML = '';
+    for (let i = 1; i <= totalPages; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'toc-dot' + (i === currentPage ? ' active' : '');
+      dot.setAttribute('aria-label', `Go to page ${i}`);
+      dot.onclick = () => goToPage(i);
+      container.appendChild(dot);
+    }
+  }
+
+  function goToPage(n) {
+    document.getElementById(`page-${currentPage}`).classList.remove('active');
+    currentPage = n;
+    document.getElementById(`page-${currentPage}`).classList.add('active');
+    buildDots();
+    updateButtons();
+    window.scrollTo({ top: document.getElementById('tocDots').offsetTop - 20, behavior: 'smooth' });
+  }
+
+  function changePage(dir) {
+    const next = currentPage + dir;
+    if (next < 1 || next > totalPages) return;
+    goToPage(next);
+  }
+
+  function updateButtons() {
+    document.querySelectorAll('[onclick="changePage(-1)"]').forEach(b => b.disabled = currentPage === 1);
+    document.querySelectorAll('[onclick="changePage(1)"]').forEach(b => b.disabled = currentPage === totalPages);
+  }
+
+  buildDots();
+  updateButtons();
+</script>
+</body>
+</html>
