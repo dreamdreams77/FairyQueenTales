@@ -423,6 +423,24 @@
     <div class="map-subtitle">so you always know where everyone is</div>
     <div class="map-frame">
       <svg viewBox="0 0 640 420" width="100%" height="auto">
+        <defs>
+          <linearGradient id="rainbowRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff6060"/>
+            <stop offset="20%" stop-color="#ffa060"/>
+            <stop offset="40%" stop-color="#ffd860"/>
+            <stop offset="55%" stop-color="#60c878"/>
+            <stop offset="70%" stop-color="#60a0e8"/>
+            <stop offset="85%" stop-color="#a868d8"/>
+            <stop offset="100%" stop-color="#f080b0"/>
+          </linearGradient>
+          <linearGradient id="rainbowDotGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ff6060"/>
+            <stop offset="25%" stop-color="#ffd860"/>
+            <stop offset="50%" stop-color="#60c878"/>
+            <stop offset="75%" stop-color="#60a0e8"/>
+            <stop offset="100%" stop-color="#f080b0"/>
+          </linearGradient>
+        </defs>
         <rect x="0" y="0" width="640" height="420" rx="14" fill="#0f1a12"/>
         <ellipse cx="320" cy="210" rx="300" ry="190" fill="#16241a"/>
 
@@ -443,11 +461,17 @@
         <text x="90" y="362" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9" fill="#c8b0e8">want to go</text>
 
         <!-- Rainbow Woods / Park -->
-        <ellipse cx="520" cy="330" rx="100" ry="62" fill="#1a3a2a" opacity="0.9"/>
-        <text x="520" y="308" text-anchor="middle" font-family="Quicksand, sans-serif" font-size="11" fill="#5db87a" letter-spacing="1">RAINBOW WOODS</text>
-        <text x="520" y="330" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9" fill="#a8e8c0">the playground is safe</text>
-        <circle cx="495" cy="352" r="3" fill="#e8c84a"/>
-        <text x="505" y="356" font-family="Lora, serif" font-style="italic" font-size="8" fill="#a8e8c0">swings</text>
+        <ellipse cx="520" cy="330" rx="100" ry="62" fill="#1a2a2a" opacity="0.9"/>
+        <ellipse cx="520" cy="330" rx="100" ry="62" fill="none" stroke="url(#rainbowRingGrad)" stroke-width="3" opacity="0.85"/>
+        <text x="520" y="306" text-anchor="middle" font-family="Quicksand, sans-serif" font-size="11" fill="#f0e8d8" letter-spacing="1">RAINBOW WOODS</text>
+        <circle cx="480" cy="320" r="4" fill="#ff6060"/>
+        <circle cx="497" cy="316" r="4" fill="#ffd860"/>
+        <circle cx="514" cy="320" r="4" fill="#60c878"/>
+        <circle cx="531" cy="316" r="4" fill="#a868d8"/>
+        <circle cx="548" cy="320" r="4" fill="#f080b0"/>
+        <text x="520" y="340" text-anchor="middle" font-family="Lora, serif" font-style="italic" font-size="9" fill="#d8d0c0">the playground is safe</text>
+        <circle cx="495" cy="360" r="3" fill="#e8c84a"/>
+        <text x="505" y="364" font-family="Lora, serif" font-style="italic" font-size="8" fill="#d8d0c0">swings</text>
 
         <!-- Paths -->
         <path d="M170 130 Q 250 190 300 210" stroke="#c8a83c" stroke-width="1.5" stroke-dasharray="3 5" fill="none" opacity="0.5"/>
@@ -474,7 +498,7 @@
       <span><span class="dot" style="background:#e8c832;"></span> Yellow Woods, stay out</span>
       <span><span class="dot" style="background:#7ab83c;"></span> Green Woods, tread carefully</span>
       <span><span class="dot" style="background:#b090d8;"></span> Shadow Woods, a place you don't want to go</span>
-      <span><span class="dot" style="background:#5db87a;"></span> Rainbow Woods, always safe</span>
+      <span><span class="dot" style="background:linear-gradient(90deg,#ff6060,#ffd860,#60c878,#60a0e8,#a868d8,#f080b0);"></span> Rainbow Woods, always safe</span>
     </div>
   </div>
 
