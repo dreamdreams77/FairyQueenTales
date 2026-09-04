@@ -275,8 +275,10 @@
     font-size: 12px;
     color: var(--parchment-shadow);
     text-align: center;
-    margin-top: -16px;
+    margin-top: 10px;
     margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
   }
 
   /* Character cards */
@@ -665,7 +667,7 @@
   .scene1 {
     width: 420px;
     height: 220px;
-    background: #1a0a3a;
+    background: linear-gradient(150deg, #716784 0%, #1a0a3a 55%, #120728 100%);
     position: relative;
     overflow: hidden;
     border-radius: 8px;
@@ -686,7 +688,7 @@
     top: 18px; right: 30px;
     width: 44px; height: 44px;
     border-radius: 50%;
-    background: #ffe080;
+    background: linear-gradient(150deg, #ffebb0 0%, #ffe080 55%, #b29c59 100%);
     opacity: 0.5;
     box-shadow: -14px 6px 0 -4px #1a0a3a inset;
   }
@@ -696,8 +698,9 @@
     top: -6px; left: 4px;
     width: 36px; height: 36px;
     border-radius: 50%;
-    background: #1a0a3a;
+    background: linear-gradient(150deg, #716784 0%, #1a0a3a 55%, #120728 100%);
     opacity: 0.9;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   /* Hills */
@@ -705,7 +708,7 @@
     position: absolute;
     bottom: 0; left: 0; right: 0;
     height: 80px;
-    background: #1a3a0a;
+    background: linear-gradient(150deg, #718467 0%, #1a3a0a 55%, #122807 100%);
     opacity: 0.7;
     border-radius: 50% 50% 0 0 / 100% 100% 0 0;
     transform: scaleX(1.6);
@@ -714,17 +717,19 @@
     position: absolute;
     bottom: 0; left: -40px;
     width: 160px; height: 60px;
-    background: #2a5a10;
+    background: linear-gradient(150deg, #7a986a 0%, #2a5a10 55%, #1d3e0b 100%);
     opacity: 0.6;
     border-radius: 50% 50% 0 0;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .hill-right {
     position: absolute;
     bottom: 0; right: -30px;
     width: 140px; height: 50px;
-    background: #2a5a10;
+    background: linear-gradient(150deg, #7a986a 0%, #2a5a10 55%, #1d3e0b 100%);
     opacity: 0.5;
     border-radius: 50% 50% 0 0;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   /* Trees */
@@ -734,12 +739,12 @@
   }
   .tree-trunk {
     width: 6px; height: 40px;
-    background: #3a2a10;
+    background: linear-gradient(150deg, #847a6a 0%, #3a2a10 55%, #281d0b 100%);
     margin: 0 auto;
   }
   .tree-top {
     width: 36px; height: 36px;
-    background: #1a5a20;
+    background: linear-gradient(150deg, #719874 0%, #1a5a20 55%, #123e16 100%);
     border-radius: 50%;
     opacity: 0.8;
     margin-bottom: -10px;
@@ -761,15 +766,17 @@
     position: absolute;
     bottom: 0; left: 25px;
     width: 150px; height: 110px;
-    background: #2a1545;
+    background: linear-gradient(150deg, #7a6d8b 0%, #2a1545 55%, #1d0e30 100%);
     opacity: 0.9;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .castle-tower {
     position: absolute;
     bottom: 0;
     width: 36px; height: 130px;
-    background: #2a1545;
+    background: linear-gradient(150deg, #7a6d8b 0%, #2a1545 55%, #1d0e30 100%);
     opacity: 0.9;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .castle-tower.left { left: 0; }
   .castle-tower.right { right: 0; }
@@ -778,8 +785,9 @@
     bottom: 110px;
     left: 65px;
     width: 70px; height: 50px;
-    background: #2a1545;
+    background: linear-gradient(150deg, #7a6d8b 0%, #2a1545 55%, #1d0e30 100%);
     opacity: 0.9;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   /* battlements using box-shadow trick */
   .battlement-row {
@@ -800,7 +808,7 @@
   .window {
     position: absolute;
     border-radius: 50%;
-    background: #ffc060;
+    background: linear-gradient(150deg, #ffd79c 0%, #ffc060 55%, #b28643 100%);
     opacity: 0.5;
   }
   .window.w1 { bottom: 50px; left: 48px; width: 22px; height: 28px; border-radius: 11px 11px 0 0; }
@@ -814,9 +822,10 @@
     bottom: 0; left: 50%;
     transform: translateX(-50%);
     width: 36px; height: 45px;
-    background: #c8a83c;
+    background: linear-gradient(150deg, #dcc986 0%, #c8a83c 55%, #8c752a 100%);
     opacity: 0.35;
     border-radius: 18px 18px 0 0;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   /* Flag */
@@ -824,7 +833,8 @@
     position: absolute;
     bottom: 160px; left: 100px;
     width: 1.5px; height: 22px;
-    background: #c8a83c;
+    background: linear-gradient(150deg, #dcc986 0%, #c8a83c 55%, #8c752a 100%);
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .flag {
     position: absolute;
@@ -848,16 +858,18 @@
   .fairy-head {
     width: 22px; height: 22px;
     border-radius: 50%;
-    background: #f0d090;
+    background: linear-gradient(150deg, #f5e1ba 0%, #f0d090 55%, #a89164 100%);
     position: absolute;
     top: 0; left: 0;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .fairy-wing {
     position: absolute;
     width: 28px; height: 16px;
-    background: rgba(120,220,255,0.45);
+    background: linear-gradient(150deg, rgba(167,232,255,0.45) 0%, rgba(120,220,255,0.45) 55%, rgba(84,154,178,0.45) 100%);
     border-radius: 50%;
     top: 4px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .wing-left { left: -22px; transform: rotate(-20deg); }
   .wing-right { left: 16px; transform: rotate(20deg); }
@@ -865,24 +877,27 @@
     position: absolute;
     top: 18px; left: 5px;
     width: 12px; height: 24px;
-    background: #80d880;
+    background: linear-gradient(150deg, #b0e6b0 0%, #80d880 55%, #599759 100%);
     border-radius: 6px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .wand {
     position: absolute;
     top: 10px; left: 20px;
     width: 2px; height: 26px;
-    background: #c8a83c;
+    background: linear-gradient(150deg, #dcc986 0%, #c8a83c 55%, #8c752a 100%);
     transform: rotate(-40deg);
     transform-origin: top;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .wand-tip {
     position: absolute;
     top: -6px; left: 28px;
     width: 8px; height: 8px;
     border-radius: 50%;
-    background: #ffd700;
+    background: linear-gradient(150deg, #ffe660 0%, #ffd700 55%, #b29600 100%);
     opacity: 0.95;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .sparkle {
     position: absolute;
@@ -1061,7 +1076,7 @@
 
   .scene3 {
     width: 420px; height: 200px;
-    background: #0a1a30;
+    background: linear-gradient(150deg, #67717e 0%, #0a1a30 55%, #071221 100%);
     position: relative;
     overflow: hidden;
     border-radius: 8px;
@@ -1071,32 +1086,36 @@
     position: absolute;
     bottom: 0; left: 40px;
     width: 100px; height: 120px;
-    background: #1a0a30;
+    background: linear-gradient(150deg, #71677e 0%, #1a0a30 55%, #120721 100%);
     opacity: 0.9;
     border-radius: 50px 50px 0 0;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   .waterfall {
     position: absolute;
     top: 0; right: 130px;
     width: 30px; height: 130px;
-    background: #4090c0;
+    background: linear-gradient(150deg, #88bad7 0%, #4090c0 55%, #2c6486 100%);
     opacity: 0.4;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .waterfall-mid {
     position: absolute;
     top: 0; right: 136px;
     width: 6px; height: 130px;
-    background: #80c0f0;
+    background: linear-gradient(150deg, #b0d7f5 0%, #80c0f0 55%, #5986a8 100%);
     opacity: 0.5;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .waterfall-pool {
     position: absolute;
     bottom: 40px; right: 95px;
     width: 100px; height: 40px;
-    background: #3070a0;
+    background: linear-gradient(150deg, #7ea6c4 0%, #3070a0 55%, #214e70 100%);
     opacity: 0.6;
     border-radius: 50%;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .mist {
     position: absolute;
@@ -1105,6 +1124,7 @@
     background: white;
     opacity: 0.12;
     border-radius: 50%;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   .gem {
@@ -1131,9 +1151,10 @@
     position: absolute;
     top: 128px; left: 222px;
     width: 32px; height: 22px;
-    background: rgba(160,200,255,0.15);
+    background: linear-gradient(150deg, rgba(193,219,255,0.15) 0%, rgba(160,200,255,0.15) 55%, rgba(112,140,178,0.15) 100%);
     border: 1.5px solid rgba(200,240,255,0.3);
     border-radius: 50%;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .dandan-sparkle {
     position: absolute;
@@ -1145,28 +1166,36 @@
     position: absolute;
     top: 100px; left: 145px;
   }
-  .fairy3-head { width: 18px; height: 18px; border-radius: 50%; background: #f0d090; position: absolute; }
-  .fairy3-wing { position: absolute; width: 24px; height: 14px; background: rgba(100,200,255,0.4); border-radius: 50%; top: 2px; }
+  .fairy3-head { width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(150deg, #f5e1ba 0%, #f0d090 55%, #a89164 100%); position: absolute;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
+  .fairy3-wing { position: absolute; width: 24px; height: 14px; background: linear-gradient(150deg, rgba(154,219,255,0.4) 0%, rgba(100,200,255,0.4) 55%, rgba(70,140,178,0.4) 100%); border-radius: 50%; top: 2px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
   .fairy3 .wing-left { left: -19px; transform: rotate(-20deg); }
   .fairy3 .wing-right { left: 13px; transform: rotate(20deg); }
-  .fairy3-torso { position: absolute; top: 16px; left: 4px; width: 10px; height: 16px; background: #80d880; border-radius: 5px; }
+  .fairy3-torso { position: absolute; top: 16px; left: 4px; width: 10px; height: 16px; background: linear-gradient(150deg, #b0e6b0 0%, #80d880 55%, #599759 100%); border-radius: 5px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
   .fairy3-arm {
     position: absolute;
     top: 14px; left: 14px;
     width: 24px; height: 2px;
-    background: #f0d090;
+    background: linear-gradient(150deg, #f5e1ba 0%, #f0d090 55%, #a89164 100%);
     transform: rotate(-25deg);
     transform-origin: left;
     border-radius: 2px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   .speech-bubble {
     position: absolute;
     top: 55px; left: 160px;
     width: 70px; height: 38px;
-    background: rgba(255,255,255,0.15);
+    background: linear-gradient(150deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.15) 55%, rgba(178,178,178,0.15) 100%);
     border: 1px solid rgba(255,255,255,0.3);
     border-radius: 20px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .speech-text {
     position: absolute;
@@ -1258,7 +1287,7 @@
 
   .scene7 {
     width: 420px; height: 210px;
-    background: #f0e8f8;
+    background: linear-gradient(150deg, #f5f0fa 0%, #f0e8f8 55%, #a8a2ad 100%);
     position: relative;
     overflow: hidden;
     border-radius: 8px;
@@ -1268,7 +1297,7 @@
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 100px;
-    background: #d8c8f0;
+    background: linear-gradient(150deg, #e6dcf5 0%, #d8c8f0 55%, #978ca8 100%);
     opacity: 0.6;
   }
 
@@ -1283,7 +1312,7 @@
     position: absolute;
     bottom: 0; left: 0; right: 0;
     height: 60px;
-    background: #90d0a0;
+    background: linear-gradient(150deg, #bae1c4 0%, #90d0a0 55%, #649170 100%);
     opacity: 0.5;
   }
 
@@ -1295,8 +1324,8 @@
   }
 
   .tree7 { position: absolute; bottom: 30px; }
-  .tree7-trunk { width: 8px; background: #5a3a10; margin: 0 auto; }
-  .tree7-top { border-radius: 50%; background: #3a8a30; opacity: 0.8; margin-bottom: -10px; }
+  .tree7-trunk { width: 8px; background: linear-gradient(150deg, #98846a 0%, #5a3a10 55%, #3e280b 100%); margin: 0 auto; }
+  .tree7-top { border-radius: 50%; background: linear-gradient(150deg, #84b67e 0%, #3a8a30 55%, #286021 100%); opacity: 0.8; margin-bottom: -10px; }
 
   .heart-path {
     position: absolute;
@@ -1309,7 +1338,9 @@
 
   /* Princess Lauren */
   .princess7 { position: absolute; bottom: 60px; left: 220px; }
-  .princess7-head { width: 26px; height: 26px; border-radius: 50%; background: #f0d8b0; position: absolute; }
+  .princess7-head { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(150deg, #f5e6ce 0%, #f0d8b0 55%, #a8977b 100%); position: absolute;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
   .crown7 {
     position: absolute;
     top: -12px; left: 1px;
@@ -1324,25 +1355,30 @@
     top: -8px; left: 11px;
     width: 4px; height: 4px;
     border-radius: 50%;
-    background: #ff8040;
+    background: linear-gradient(150deg, #ffb088 0%, #ff8040 55%, #b2592c 100%);
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .princess7-hair {
     position: absolute;
     top: 8px;
     width: 5px; height: 22px;
-    background: #d08030;
+    background: linear-gradient(150deg, #e1b07e 0%, #d08030 55%, #915921 100%);
     border-radius: 3px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .hair-left { left: -3px; transform: rotate(-12deg); }
   .hair-right { left: 24px; transform: rotate(12deg); }
-  .princess7-torso { position: absolute; top: 24px; left: 1px; width: 24px; height: 30px; background: #d070a0; border-radius: 10px 10px 0 0; }
+  .princess7-torso { position: absolute; top: 24px; left: 1px; width: 24px; height: 30px; background: linear-gradient(150deg, #e1a6c4 0%, #d070a0 55%, #914e70 100%); border-radius: 10px 10px 0 0;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
   .princess7-skirt {
     position: absolute;
     top: 44px; left: -4px;
     width: 34px; height: 30px;
-    background: #e090c0;
+    background: linear-gradient(150deg, #ebbad7 0%, #e090c0 55%, #9c6486 100%);
     opacity: 0.9;
     border-radius: 0 0 50% 50%;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .princess7-smile {
     position: absolute;
@@ -1356,61 +1392,76 @@
     top: 11px;
     width: 2px; height: 2px;
     border-radius: 50%;
-    background: #3a2010;
+    background: linear-gradient(150deg, #84746a 0%, #3a2010 55%, #28160b 100%);
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   /* Fairy */
   .fairy7 { position: absolute; bottom: 65px; left: 130px; }
-  .fairy7-head { width: 22px; height: 22px; border-radius: 50%; background: #f0d090; position: absolute; }
-  .fairy7-wing { position: absolute; width: 28px; height: 16px; background: rgba(140,220,255,0.45); border-radius: 50%; top: 4px; }
+  .fairy7-head { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(150deg, #f5e1ba 0%, #f0d090 55%, #a89164 100%); position: absolute;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
+  .fairy7-wing { position: absolute; width: 28px; height: 16px; background: linear-gradient(150deg, rgba(180,232,255,0.45) 0%, rgba(140,220,255,0.45) 55%, rgba(98,154,178,0.45) 100%); border-radius: 50%; top: 4px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
   .fairy7 .wing-left { left: -22px; transform: rotate(-20deg); }
   .fairy7 .wing-right { left: 16px; transform: rotate(20deg); }
-  .fairy7-torso { position: absolute; top: 20px; left: 6px; width: 11px; height: 22px; background: #80d880; border-radius: 6px; }
+  .fairy7-torso { position: absolute; top: 20px; left: 6px; width: 11px; height: 22px; background: linear-gradient(150deg, #b0e6b0 0%, #80d880 55%, #599759 100%); border-radius: 6px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
 
   .hand7 {
     position: absolute;
     height: 2.5px;
-    background: #f0d090;
+    background: linear-gradient(150deg, #f5e1ba 0%, #f0d090 55%, #a89164 100%);
     border-radius: 2px;
   }
 
   .little-heart {
     position: absolute;
     width: 12px; height: 12px;
-    background: #ff6080;
+    background: linear-gradient(150deg, #ff9cb0 0%, #ff6080 55%, #b24359 100%);
     opacity: 0.9;
     transform: rotate(45deg);
     border-radius: 0 50% 0 50%;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   /* LittleLove behind tree */
   .littlelove7 { position: absolute; bottom: 30px; left: 30px; }
-  .ll7-wing { position: absolute; width: 16px; height: 10px; background: rgba(200,180,255,0.5); border-radius: 50%; top: 6px; }
+  .ll7-wing { position: absolute; width: 16px; height: 10px; background: linear-gradient(150deg, rgba(219,206,255,0.5) 0%, rgba(200,180,255,0.5) 55%, rgba(140,125,178,0.5) 100%); border-radius: 50%; top: 6px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
   .ll7-wing-left { left: -11px; transform: rotate(-20deg); }
   .ll7-wing-right { left: 9px; transform: rotate(20deg); }
-  .ll7-body { width: 12px; height: 12px; border-radius: 50%; background: #f0c0e0; opacity: 0.9; position: absolute; top: 3px; left: 3px; }
+  .ll7-body { width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(150deg, #f5d7eb 0%, #f0c0e0 55%, #a8869c 100%); opacity: 0.9; position: absolute; top: 3px; left: 3px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
   .ll7-tree-cover {
     position: absolute;
     top: -10px; left: -12px;
     width: 22px; height: 50px;
-    background: #3a8a30;
+    background: linear-gradient(150deg, #84b67e 0%, #3a8a30 55%, #286021 100%);
     opacity: 0.6;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .ll7-eye {
     position: absolute;
     top: 7px; left: 11px;
     width: 1.5px; height: 1.5px;
     border-radius: 50%;
-    background: #3a2010;
+    background: linear-gradient(150deg, #84746a 0%, #3a2010 55%, #28160b 100%);
     opacity: 0.8;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .ll-mini-heart {
     position: absolute;
     width: 6px; height: 6px;
-    background: #ffb0c0;
+    background: linear-gradient(150deg, #ffced7 0%, #ffb0c0 55%, #b27b86 100%);
     opacity: 0.7;
     transform: rotate(45deg);
     border-radius: 0 50% 0 50%;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 </style>
 <div class="scene7">
@@ -1545,12 +1596,12 @@
 
   .side-green {
     width: 50%; height: 100%;
-    background: #c8f0c0;
+    background: linear-gradient(150deg, #dcf5d7 0%, #c8f0c0 55%, #8ca886 100%);
     position: relative;
   }
   .side-yellow {
     width: 50%; height: 100%;
-    background: #f0e880;
+    background: linear-gradient(150deg, #f5f0b0 0%, #f0e880 55%, #a8a259 100%);
     position: relative;
   }
   .divider {
@@ -1564,7 +1615,7 @@
     position: absolute;
     bottom: 0;
   }
-  .trunk-sm { width: 7px; background: #5a3a10; margin: 0 auto; }
+  .trunk-sm { width: 7px; background: linear-gradient(150deg, #98846a 0%, #5a3a10 55%, #3e280b 100%); margin: 0 auto; }
   .top-sm { border-radius: 50%; margin-bottom: -8px; }
 
   .sign {
@@ -1572,9 +1623,10 @@
     top: 70px; left: 50%;
     transform: translateX(-50%);
     width: 60px; height: 40px;
-    background: #ffd700;
+    background: linear-gradient(150deg, #ffe660 0%, #ffd700 55%, #b29600 100%);
     border: 2px solid #c8a000;
     border-radius: 4px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .sign-text {
     position: absolute;
@@ -1592,7 +1644,8 @@
     top: 110px; left: 50%;
     transform: translateX(-50%);
     width: 6px; height: 20px;
-    background: #8a6000;
+    background: linear-gradient(150deg, #b69c60 0%, #8a6000 55%, #604300 100%);
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   .warning-tri {
@@ -1623,24 +1676,31 @@
     position: absolute;
     top: 50%; left: -3px; right: -3px;
     height: 3px;
-    background: #ff3000;
+    background: linear-gradient(150deg, #ff7e60 0%, #ff3000 55%, #b22100 100%);
   }
 
   .fairy4 {
     position: absolute;
     top: 95px; left: 110px;
   }
-  .fairy4-head { width: 20px; height: 20px; border-radius: 50%; background: #f0d090; position: absolute; }
-  .fairy4-wing { position: absolute; width: 26px; height: 14px; background: rgba(100,200,255,0.4); border-radius: 50%; top: 3px; }
+  .fairy4-head { width: 20px; height: 20px; border-radius: 50%; background: linear-gradient(150deg, #f5e1ba 0%, #f0d090 55%, #a89164 100%); position: absolute;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
+  .fairy4-wing { position: absolute; width: 26px; height: 14px; background: linear-gradient(150deg, rgba(154,219,255,0.4) 0%, rgba(100,200,255,0.4) 55%, rgba(70,140,178,0.4) 100%); border-radius: 50%; top: 3px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
   .fairy4 .wing-left { left: -20px; transform: rotate(-20deg); }
   .fairy4 .wing-right { left: 14px; transform: rotate(20deg); }
-  .fairy4-torso { position: absolute; top: 18px; left: 4px; width: 11px; height: 18px; background: #80d880; border-radius: 5px; }
+  .fairy4-torso { position: absolute; top: 18px; left: 4px; width: 11px; height: 18px; background: linear-gradient(150deg, #b0e6b0 0%, #80d880 55%, #599759 100%); border-radius: 5px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
   .fairy4-arm {
     position: absolute;
     top: 22px; left: 14px;
     width: 50px; height: 2px;
-    background: #f0d090;
+    background: linear-gradient(150deg, #f5e1ba 0%, #f0d090 55%, #a89164 100%);
     border-radius: 2px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   .eye-pair {
@@ -1651,7 +1711,7 @@
   .red-eye {
     width: 6px; height: 6px;
     border-radius: 50%;
-    background: #ff4000;
+    background: linear-gradient(150deg, #ff8860 0%, #ff4000 55%, #b22c00 100%);
     opacity: 0.7;
   }</style>
 <div class="scene4">
@@ -1731,9 +1791,8 @@
 
     <div style="
       background: linear-gradient(135deg, rgba(255,80,80,0.08), rgba(255,180,0,0.08), rgba(80,200,80,0.08), rgba(80,120,255,0.08), rgba(180,80,255,0.08));
-      border: 2px solid rgba(200,168,60,0.3);
-      border-left: 5px solid transparent;
-      border-image: linear-gradient(to bottom, #ff6060, #ffc000, #60c060, #6090ff, #c060ff) 1;
+      border: 2px solid rgba(200,168,60,0.4);
+      border-left: 5px solid #c8a83c;
       border-radius: 12px;
       padding: 16px 20px;
       margin: 20px 0;
@@ -1793,7 +1852,7 @@
 
   .scene5 {
     width: 420px; height: 190px;
-    background: #1a0840;
+    background: linear-gradient(150deg, #716588 0%, #1a0840 55%, #12052c 100%);
     position: relative;
     overflow: hidden;
     border-radius: 8px;
@@ -1803,7 +1862,7 @@
     position: absolute;
     top: -20px; left: -20px; right: -20px;
     height: 80px;
-    background: #3a1870;
+    background: linear-gradient(150deg, #846fa6 0%, #3a1870 55%, #28104e 100%);
     opacity: 0.7;
     border-radius: 0 0 50% 50% / 0 0 100% 100%;
   }
@@ -1811,7 +1870,7 @@
     position: absolute;
     top: -10px; left: -20px; right: -20px;
     height: 60px;
-    background: #180a5a;
+    background: linear-gradient(150deg, #6f6798 0%, #180a5a 55%, #10073e 100%);
     opacity: 0.5;
     border-radius: 0 0 50% 50% / 0 0 100% 100%;
   }
@@ -1822,6 +1881,7 @@
     background: white;
     border-radius: 50%;
     opacity: 0.7;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   .note {
@@ -1835,7 +1895,7 @@
     position: absolute;
     bottom: 0; left: 0; right: 0;
     height: 30px;
-    background: #1a3a10;
+    background: linear-gradient(150deg, #71846a 0%, #1a3a10 55%, #12280b 100%);
     opacity: 0.8;
     border-radius: 50% 50% 0 0 / 100% 100% 0 0;
     transform: scaleX(1.4);
@@ -1846,9 +1906,10 @@
     bottom: 18px; left: 50%;
     transform: translateX(-50%);
     width: 240px; height: 18px;
-    background: #2a1860;
+    background: linear-gradient(150deg, #7a6f9c 0%, #2a1860 55%, #1d1043 100%);
     opacity: 0.6;
     border-radius: 50%;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   .fairy5 {
@@ -1856,17 +1917,24 @@
     bottom: 28px; left: 50%;
     transform: translateX(-50%);
   }
-  .fairy5-head { width: 22px; height: 22px; border-radius: 50%; background: #f0d090; position: absolute; }
-  .fairy5-wing { position: absolute; width: 28px; height: 16px; background: rgba(160,200,255,0.5); border-radius: 50%; top: 4px; }
+  .fairy5-head { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(150deg, #f5e1ba 0%, #f0d090 55%, #a89164 100%); position: absolute;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
+  .fairy5-wing { position: absolute; width: 28px; height: 16px; background: linear-gradient(150deg, rgba(193,219,255,0.5) 0%, rgba(160,200,255,0.5) 55%, rgba(112,140,178,0.5) 100%); border-radius: 50%; top: 4px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
   .fairy5 .wing-left { left: -22px; transform: rotate(-20deg); }
   .fairy5 .wing-right { left: 16px; transform: rotate(20deg); }
-  .fairy5-torso { position: absolute; top: 20px; left: 5px; width: 12px; height: 20px; background: #80d880; border-radius: 6px; }
+  .fairy5-torso { position: absolute; top: 20px; left: 5px; width: 12px; height: 20px; background: linear-gradient(150deg, #b0e6b0 0%, #80d880 55%, #599759 100%); border-radius: 6px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
   .fairy5-arm {
     position: absolute;
     top: 16px;
     width: 18px; height: 2px;
-    background: #f0d090;
+    background: linear-gradient(150deg, #f5e1ba 0%, #f0d090 55%, #a89164 100%);
     border-radius: 2px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .arm-left { left: -16px; transform: rotate(35deg); transform-origin: right; }
   .arm-right { left: 22px; transform: rotate(-35deg); transform-origin: left; }
@@ -1884,7 +1952,9 @@
     position: absolute;
     bottom: 22px; left: 280px;
   }
-  .princess5-head { width: 18px; height: 18px; border-radius: 50%; background: #f0d8b0; position: absolute; }
+  .princess5-head { width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(150deg, #f5e6ce 0%, #f0d8b0 55%, #a8977b 100%); position: absolute;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
   .crown5 {
     position: absolute;
     top: -8px; left: 1px;
@@ -1894,30 +1964,35 @@
     border-color: transparent transparent #ffd700 transparent;
     opacity: 0.9;
   }
-  .princess5-torso { position: absolute; top: 16px; left: 0px; width: 18px; height: 28px; background: #d070a0; border-radius: 8px; }
+  .princess5-torso { position: absolute; top: 16px; left: 0px; width: 18px; height: 28px; background: linear-gradient(150deg, #e1a6c4 0%, #d070a0 55%, #914e70 100%); border-radius: 8px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
   .heart5 {
     position: absolute;
     width: 10px; height: 10px;
-    background: #ff6080;
+    background: linear-gradient(150deg, #ff9cb0 0%, #ff6080 55%, #b24359 100%);
     opacity: 0.7;
     transform: rotate(45deg);
     border-radius: 0 50% 0 50%;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   .madge5 {
     position: absolute;
     bottom: 26px; left: 120px;
     width: 24px; height: 16px;
-    background: #5a8a30;
+    background: linear-gradient(150deg, #98b67e 0%, #5a8a30 55%, #3e6021 100%);
     opacity: 0.9;
     border-radius: 50%;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .madge5-head {
     position: absolute;
     top: -2px; left: 20px;
     width: 12px; height: 12px;
     border-radius: 50%;
-    background: #8ab870;
+    background: linear-gradient(150deg, #b6d2a6 0%, #8ab870 55%, #60804e 100%);
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }</style>
 <div class="scene5">
   <div class="aurora1"></div>
@@ -2039,7 +2114,7 @@
 
   .scene6 {
     width: 420px; height: 220px;
-    background: #0a0a2a;
+    background: linear-gradient(150deg, #67677a 0%, #0a0a2a 55%, #07071d 100%);
     position: relative;
     overflow: hidden;
     border-radius: 8px;
@@ -2049,7 +2124,7 @@
     position: absolute;
     top: -20px; left: -20px; right: -20px;
     height: 90px;
-    background: #1a1060;
+    background: linear-gradient(150deg, #716a9c 0%, #1a1060 55%, #120b43 100%);
     opacity: 0.8;
     border-radius: 0 0 50% 50% / 0 0 100% 100%;
   }
@@ -2057,7 +2132,7 @@
     position: absolute;
     top: -10px; left: -20px; right: -20px;
     height: 65px;
-    background: #0a2040;
+    background: linear-gradient(150deg, #677488 0%, #0a2040 55%, #07162c 100%);
     opacity: 0.6;
     border-radius: 0 0 50% 50% / 0 0 100% 100%;
   }
@@ -2067,8 +2142,9 @@
     top: 18px; right: 50px;
     width: 56px; height: 56px;
     border-radius: 50%;
-    background: #fff8c0;
+    background: linear-gradient(150deg, #fffad7 0%, #fff8c0 55%, #b2ad86 100%);
     opacity: 0.5;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .moon6::after {
     content: '';
@@ -2076,16 +2152,19 @@
     top: -8px; left: 11px;
     width: 46px; height: 46px;
     border-radius: 50%;
-    background: #0a0a2a;
+    background: linear-gradient(150deg, #67677a 0%, #0a0a2a 55%, #07071d 100%);
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
-  .star6 { position: absolute; width: 2px; height: 2px; background: white; border-radius: 50%; opacity: 0.7; }
+  .star6 { position: absolute; width: 2px; height: 2px; background: white; border-radius: 50%; opacity: 0.7;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
 
   .ground6 {
     position: absolute;
     bottom: 0; left: 0; right: 0;
     height: 35px;
-    background: #1a3a10;
+    background: linear-gradient(150deg, #71846a 0%, #1a3a10 55%, #12280b 100%);
     opacity: 0.7;
   }
 
@@ -2094,15 +2173,17 @@
     bottom: 35px; left: 50%;
     transform: translateX(-50%);
     width: 110px; height: 110px;
-    background: #1a0835;
+    background: linear-gradient(150deg, #716581 0%, #1a0835 55%, #120525 100%);
     opacity: 0.9;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .castle6-tower {
     position: absolute;
     bottom: 0;
     width: 25px; height: 70px;
-    background: #1a0835;
+    background: linear-gradient(150deg, #716581 0%, #1a0835 55%, #120525 100%);
     opacity: 0.9;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .castle6-tower.left { left: -10px; }
   .castle6-tower.right { right: -10px; }
@@ -2110,27 +2191,33 @@
     position: absolute;
     top: -45px; left: 23px;
     width: 64px; height: 45px;
-    background: #1a0835;
+    background: linear-gradient(150deg, #716581 0%, #1a0835 55%, #120525 100%);
     opacity: 0.9;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .castle6-window {
     position: absolute;
     width: 18px; height: 24px;
-    background: #ffb040;
+    background: linear-gradient(150deg, #ffce88 0%, #ffb040 55%, #b27b2c 100%);
     opacity: 0.4;
     border-radius: 9px 9px 0 0;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   .tree6 { position: absolute; bottom: 30px; }
-  .tree6-trunk { width: 8px; background: #2a4a10; opacity: 0.8; margin: 0 auto; }
-  .tree6-top { border-radius: 50%; background: #1a4a18; opacity: 0.8; margin-bottom: -10px; }
+  .tree6-trunk { width: 8px; background: linear-gradient(150deg, #7a8e6a 0%, #2a4a10 55%, #1d330b 100%); opacity: 0.8; margin: 0 auto; }
+  .tree6-top { border-radius: 50%; background: linear-gradient(150deg, #718e6f 0%, #1a4a18 55%, #123310 100%); opacity: 0.8; margin-bottom: -10px; }
 
   .littlelove {
     position: absolute;
     bottom: 55px; left: 55px;
   }
-  .littlelove-body { width: 14px; height: 14px; border-radius: 50%; background: #f0c0e0; opacity: 0.9; position: absolute; top: 4px; left: 4px;}
-  .littlelove-wing { position: absolute; width: 20px; height: 12px; background: rgba(220,180,255,0.5); border-radius: 50%; top: 7px; }
+  .littlelove-body { width: 14px; height: 14px; border-radius: 50%; background: linear-gradient(150deg, #f5d7eb 0%, #f0c0e0 55%, #a8869c 100%); opacity: 0.9; position: absolute; top: 4px; left: 4px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
+  .littlelove-wing { position: absolute; width: 20px; height: 12px; background: linear-gradient(150deg, rgba(232,206,255,0.5) 0%, rgba(220,180,255,0.5) 55%, rgba(154,125,178,0.5) 100%); border-radius: 50%; top: 7px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
   .ll-wing-left { left: -14px; transform: rotate(-22deg); }
   .ll-wing-right { left: 10px; transform: rotate(22deg); }
   .littlelove-glow {
@@ -2138,54 +2225,68 @@
     top: -8px; left: -8px;
     width: 38px; height: 38px;
     border-radius: 50%;
-    background: rgba(240,180,230,0.15);
+    background: linear-gradient(150deg, rgba(245,206,238,0.15) 0%, rgba(240,180,230,0.15) 55%, rgba(168,125,161,0.15) 100%);
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .ll-tree-cover {
     position: absolute;
     bottom: -22px; left: -22px;
     width: 28px; height: 65px;
-    background: #1a4a18;
+    background: linear-gradient(150deg, #718e6f 0%, #1a4a18 55%, #123310 100%);
     opacity: 0.55;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   .madge6 {
     position: absolute;
     bottom: 38px; right: 60px;
     width: 30px; height: 18px;
-    background: #5a8a30;
+    background: linear-gradient(150deg, #98b67e 0%, #5a8a30 55%, #3e6021 100%);
     border-radius: 50%;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .madge6-head {
     position: absolute;
     top: -2px; right: -10px;
     width: 14px; height: 14px;
     border-radius: 50%;
-    background: #8ab870;
+    background: linear-gradient(150deg, #b6d2a6 0%, #8ab870 55%, #60804e 100%);
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .madge6-eye {
     position: absolute;
     top: 4px; right: 2px;
     width: 2px; height: 2px;
     border-radius: 50%;
-    background: #1a3a0a;
+    background: linear-gradient(150deg, #718467 0%, #1a3a0a 55%, #122807 100%);
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .madge6-glow {
     position: absolute;
     top: -10px; left: -10px;
     width: 50px; height: 38px;
     border-radius: 50%;
-    background: rgba(90,200,80,0.12);
+    background: linear-gradient(150deg, rgba(147,219,141,0.12) 0%, rgba(90,200,80,0.12) 55%, rgba(62,140,56,0.12) 100%);
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   .fairy6 { position: absolute; bottom: 60px; left: 165px; }
-  .fairy6-head { width: 22px; height: 22px; border-radius: 50%; background: #f0d090; position: absolute; }
-  .fairy6-wing { position: absolute; width: 28px; height: 16px; background: rgba(140,220,255,0.45); border-radius: 50%; top: 4px; }
+  .fairy6-head { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(150deg, #f5e1ba 0%, #f0d090 55%, #a89164 100%); position: absolute;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
+  .fairy6-wing { position: absolute; width: 28px; height: 16px; background: linear-gradient(150deg, rgba(180,232,255,0.45) 0%, rgba(140,220,255,0.45) 55%, rgba(98,154,178,0.45) 100%); border-radius: 50%; top: 4px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
   .fairy6 .wing-left { left: -22px; transform: rotate(-22deg); }
   .fairy6 .wing-right { left: 16px; transform: rotate(22deg); }
-  .fairy6-torso { position: absolute; top: 20px; left: 5px; width: 12px; height: 22px; background: #80d880; border-radius: 6px; }
+  .fairy6-torso { position: absolute; top: 20px; left: 5px; width: 12px; height: 22px; background: linear-gradient(150deg, #b0e6b0 0%, #80d880 55%, #599759 100%); border-radius: 6px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
 
   .princess6 { position: absolute; bottom: 56px; left: 222px; }
-  .princess6-head { width: 24px; height: 24px; border-radius: 50%; background: #f0d8b0; position: absolute; }
+  .princess6-head { width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(150deg, #f5e6ce 0%, #f0d8b0 55%, #a8977b 100%); position: absolute;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
   .crown6 {
     position: absolute;
     top: -10px; left: 3px;
@@ -2195,31 +2296,36 @@
     border-color: transparent transparent #ffd700 transparent;
     opacity: 0.9;
   }
-  .princess6-torso { position: absolute; top: 22px; left: 1px; width: 22px; height: 30px; background: #d070a0; border-radius: 10px; }
+  .princess6-torso { position: absolute; top: 22px; left: 1px; width: 22px; height: 30px; background: linear-gradient(150deg, #e1a6c4 0%, #d070a0 55%, #914e70 100%); border-radius: 10px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
+  }
 
   .hand-link {
     position: absolute;
     bottom: 70px; left: 196px;
     width: 35px; height: 3px;
-    background: #f0d090;
+    background: linear-gradient(150deg, #f5e1ba 0%, #f0d090 55%, #a89164 100%);
     border-radius: 2px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   .heart6 {
     position: absolute;
     width: 14px; height: 14px;
-    background: #ff6080;
+    background: linear-gradient(150deg, #ff9cb0 0%, #ff6080 55%, #b24359 100%);
     opacity: 0.8;
     transform: rotate(45deg);
     border-radius: 0 50% 0 50%;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .heart6-sm {
     position: absolute;
     width: 10px; height: 10px;
-    background: #ff80a0;
+    background: linear-gradient(150deg, #ffb0c4 0%, #ff80a0 55%, #b25970 100%);
     opacity: 0.6;
     transform: rotate(45deg);
     border-radius: 0 50% 0 50%;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   .dandan-spark {
@@ -2330,7 +2436,7 @@
     position: absolute;
     bottom: 5px; left: 0; right: 0;
     height: 25px;
-    background: #5090c8;
+    background: linear-gradient(150deg, #92badc 0%, #5090c8 55%, #38648c 100%);
     opacity: 0.6;
     border-radius: 50% 50% 0 0 / 60% 60% 0 0;
   }
@@ -2338,7 +2444,7 @@
     position: absolute;
     bottom: 0; left: 0; right: 0;
     height: 20px;
-    background: #3070a8;
+    background: linear-gradient(150deg, #7ea6c9 0%, #3070a8 55%, #214e75 100%);
     opacity: 0.5;
     border-radius: 50% 50% 0 0 / 60% 60% 0 0;
   }
@@ -2347,38 +2453,43 @@
     position: absolute;
     bottom: 22px; left: 18px;
     width: 144px; height: 22px;
-    background: #8a4010;
+    background: linear-gradient(150deg, #b6886a 0%, #8a4010 55%, #602c0b 100%);
     border-radius: 0 0 50% 50% / 0 0 80% 80%;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .deck {
     position: absolute;
     bottom: 42px; left: 22px;
     width: 136px; height: 14px;
-    background: #a05018;
+    background: linear-gradient(150deg, #c4926f 0%, #a05018 55%, #703810 100%);
     border-radius: 6px 6px 0 0;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   .cabin {
     position: absolute;
     bottom: 56px; left: 60px;
     width: 60px; height: 22px;
-    background: #c87830;
+    background: linear-gradient(150deg, #dcab7e 0%, #c87830 55%, #8c5421 100%);
     border-radius: 4px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .cabin-window {
     position: absolute;
     top: 5px;
     width: 14px; height: 12px;
     border-radius: 2px;
-    background: #a0c8e8;
+    background: linear-gradient(150deg, #c4dcf0 0%, #a0c8e8 55%, #708ca2 100%);
     opacity: 0.8;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   .chimney {
     position: absolute;
     bottom: 76px; left: 86px;
     width: 8px; height: 16px;
-    background: #7a3808;
+    background: linear-gradient(150deg, #ac8365 0%, #7a3808 55%, #552705 100%);
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   .smoke {
@@ -2391,7 +2502,8 @@
     position: absolute;
     bottom: 78px; left: 90px;
     width: 1.5px; height: 14px;
-    background: #5a3808;
+    background: linear-gradient(150deg, #988365 0%, #5a3808 55%, #3e2705 100%);
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
   .flag {
     position: absolute;
@@ -2408,9 +2520,10 @@
     bottom: 30px;
     width: 10px; height: 10px;
     border-radius: 50%;
-    background: #a0c8e8;
+    background: linear-gradient(150deg, #c4dcf0 0%, #a0c8e8 55%, #708ca2 100%);
     opacity: 0.7;
     border: 1px solid #7a3808;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.3);
   }
 
   .wake {
